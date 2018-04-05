@@ -42,10 +42,14 @@ class ViewController: UIViewController {
             let response = json["response"] as! [String: Any]
             let feeds = response["feeds"]as! NSArray
 
-            
+        
             for item in feeds{
                 let post = item as! [String: Any]
-                print(post["type"])
+                let type = post["type"] as! String
+                
+                if(type == "news" || type == "post"){
+                    print(post)
+                }
             }
             
         }
