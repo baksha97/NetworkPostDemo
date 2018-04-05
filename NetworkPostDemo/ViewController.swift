@@ -37,27 +37,49 @@ class ViewController: UIViewController {
             let response = json["response"] as! [String: Any]
             let feeds = response["feeds"]as! NSArray
 
-        
-            for item in feeds{
-                let post = item as! [String: Any]
-                let type = post["type"] as! String
-                let details = post["details"] as Any
-                
-                if(type == "post"){
-                    print(details)
-                    do{
-                        let object = try self.decode(as: PostDetails.self, data: details as! [String : Any])
-                        print("COUNT ---- \(object.commentCount)")
-                        print("COUNT ---- \(object.placeName)")
-                    } catch{
-                        print(error)
-                    }
-                }
-            }
+            self.postRequestItemToObject(feeds: feeds)
+    
             
         }
         task.resume()  
         
+    }
+    
+    func newsRequestItemToObject(feeds: NSArray){
+        for item in feeds{
+            let post = item as! [String: Any]
+            let type = post["type"] as! String
+            let details = post["details"] as Any
+            
+            if(type == "news"){
+                print(details)
+                do{
+                    let object = try self.decode(as: RawNewsDetails.self, data: details as! [String : Any])
+                    print("mobReduceImg ---- \(object.mobReduceImg)")
+                    //print("COUNT ---- \(String(describing: object.placeName))")
+                } catch{
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func postRequestItemToObject(feeds: NSArray){
+        for item in feeds{
+            let post = item as! [String: Any]
+            let type = post["type"] as! String
+            let details = post["details"] as Any
+            
+            if(type == "news"){
+                print(details)
+                do{
+                    let object = try self.decode(as: RawPostDetails.self, data: details as! [String : Any])
+                    print("COUNT ---- \(String(describing: object.placeName))")
+                } catch{
+                    print(error)
+                }
+            }
+        }
     }
     
     
@@ -70,7 +92,24 @@ class ViewController: UIViewController {
     }
 }
 
-class PostDetails: Codable{
+class RawNewsDetails: Codable{
+    var commentCount: String
+    var feedTime: String
+    var likeCount: String
+    var mobReduceImg: String
+    var myLike: Int
+    var newsDescription: String
+    var newsId: String
+    var newsImageUrl: String
+    var newsLink: String
+    var newsSource: String
+    var newsTitle: String
+    var poweredBy: String
+    var shareCount: String
+    var webOrgimage: String
+}
+
+class RawPostDetails: Codable{
     var commentCount: String
     //var createdBy: LykUser
     var createdOn: String
@@ -88,7 +127,7 @@ class PostDetails: Codable{
     var userId: String
 }
 
-enum MyError: Error {
+enum EncodingError: Error {
     case encodingError
 }
 
@@ -96,9 +135,9 @@ extension Encodable{
     
     func toJson(excluding keys: [String] = [String]()) throws -> [String: Any] {
         let objectData = try JSONEncoder().encode(self)
-        ///will need future modification
+        ///might need future modification
         let jsonObject = try JSONSerialization.jsonObject(with: objectData, options: [])
-        guard var json = jsonObject as? [String: Any] else {throw MyError.encodingError}
+        guard var json = jsonObject as? [String: Any] else {throw EncodingError.encodingError}
         
         for key in keys{
             json[key] = nil
