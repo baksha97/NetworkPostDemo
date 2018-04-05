@@ -33,8 +33,21 @@ class ViewController: UIViewController {
                 print("responseString = \(String(describing: responseString))")
             }
             
-            let json = try! JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
+//            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+//
+            let json = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as! [String:Any]
+            
+            //print(json["response"]!["feeds"])
+            
+            let response = json["response"] as! [String: Any]
+            let feeds = response["feeds"]as! NSArray
+
+            
+            for item in feeds{
+                let post = item as! [String: Any]
+                print(post["type"])
+            }
+            
         }
         task.resume()  
         
