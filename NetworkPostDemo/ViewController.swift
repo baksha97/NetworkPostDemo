@@ -32,12 +32,7 @@ class ViewController: UIViewController {
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString = \(String(describing: responseString))")
             }
-            
-//            let json = try! JSONSerialization.jsonObject(with: data, options: [])
-//
             let json = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as! [String:Any]
-            
-            //print(json["response"]!["feeds"])
             
             let response = json["response"] as! [String: Any]
             let feeds = response["feeds"]as! NSArray
@@ -46,9 +41,17 @@ class ViewController: UIViewController {
             for item in feeds{
                 let post = item as! [String: Any]
                 let type = post["type"] as! String
+                let details = post["details"] as Any
                 
-                if(type == "news" || type == "post"){
-                    print(post)
+                if(type == "post"){
+                    print(details)
+                    do{
+                        let object = try self.decode(as: PostDetails.self, data: details as! [String : Any])
+                        print("COUNT ---- \(object.commentCount)")
+                        print("COUNT ---- \(object.placeName)")
+                    } catch{
+                        print(error)
+                    }
                 }
             }
             
@@ -56,12 +59,53 @@ class ViewController: UIViewController {
         task.resume()  
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    func decode<T: Decodable>(as objectType: T.Type, data: [String: Any]) throws -> T{
+        
+        let documentData = try JSONSerialization.data(withJSONObject: data, options: [])
+        let decodedObject = try JSONDecoder().decode(objectType, from: documentData)
+        
+        return decodedObject
     }
-
-
 }
+
+class PostDetails: Codable{
+    var commentCount: String
+    //var createdBy: LykUser
+    var createdOn: String
+    var feedTime: String
+    var imageUrl: String
+    var likeCount: String
+    var myLike: Int
+    var placeName: String?
+    var postId: String
+    var postLat: String?
+    var postLng: String?
+    var privateCount: String
+    var shareCount: String
+    var title: String
+    var userId: String
+}
+
+enum MyError: Error {
+    case encodingError
+}
+
+extension Encodable{
+    
+    func toJson(excluding keys: [String] = [String]()) throws -> [String: Any] {
+        let objectData = try JSONEncoder().encode(self)
+        ///will need future modification
+        let jsonObject = try JSONSerialization.jsonObject(with: objectData, options: [])
+        guard var json = jsonObject as? [String: Any] else {throw MyError.encodingError}
+        
+        for key in keys{
+            json[key] = nil
+        }
+        
+        return json
+    }
+}
+
 
