@@ -116,7 +116,7 @@ class LykAppService{
                     do{
                         let object = try self.decode(as: RawNewsDetails.self, data: details as! [String : Any])
                         items.append(object)
-                        //   print(details)
+                        print(details)
                     } catch{
                         print(error)
                     }

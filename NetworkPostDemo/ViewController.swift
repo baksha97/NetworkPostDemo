@@ -14,8 +14,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 //
         LykAppService.shared.retrieveAll(completion: { (items) in
-            print(items?.count)
-           // print(news?.count)
+            if let items = items{
+                for item in items{
+                    switch item {
+                    case let feedItem as RawPostDetails:
+                        print(feedItem.title)
+                    case _ as RawNewsDetails:
+                        print()
+                    default:
+                        print("not string")
+                    }
+                }
+            }
         })
         
     }
