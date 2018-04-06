@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum LykItemType: String{
-    case news
-    case posts
-}
-
 class LykAppService{
     static let shared = LykAppService()
     
@@ -27,6 +22,27 @@ class LykAppService{
         request.httpMethod = "POST"
         postString = "userId=3196&offset=0&limit=25" //Param: {"userId":"3196",  "offset": 0, "limit":25 }
         request.httpBody = postString.data(using: .utf8)
+    }
+    
+    //TODO: add error
+    public func retrieveAll(completion: @escaping([Any]?) -> Void){
+        runURLTask(completion: { (data) in
+            
+            var array = [Any]()
+            
+            if let data = data{
+                let json = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as! [String:Any]
+                let feed = self.responseFeed(from: json)
+                //HANDLE OBJECTS
+                
+                if let feedItems = self.query(feed: feed, for: [.posts, .news]){
+                    array = feedItems
+                }
+                completion(array)
+            }else{
+                print("There was an error retrieving your feed items.")
+            }
+        })
     }
     
     //TODO: add error
@@ -76,6 +92,40 @@ class LykAppService{
     private func responseFeed(from json: [String: Any]) -> NSArray {
         let response = json["response"] as! [String: Any]
         return (response["feeds"] as! NSArray)
+    }
+    
+    private func query(feed: NSArray, for itemTypes: [LykItemType]) -> [Any]?{
+        
+        var items = [Any]()
+        for item in feed{
+            let post = item as! [String: Any]
+            let type = post["type"] as! String
+            if let details = post["details"] as Any?{
+                switch type {
+                case "post":
+                    print("\(type)")
+                    do{
+                        let post = try self.decode(as: RawPostDetails.self, data: details as! [String : Any])
+                        items.append(post)
+                        print(details)
+                    } catch{
+                        print(error)
+                }
+                case "news":
+                    print("\(type)")
+                    do{
+                        let object = try self.decode(as: RawNewsDetails.self, data: details as! [String : Any])
+                        items.append(object)
+                        //   print(details)
+                    } catch{
+                        print(error)
+                    }
+                default:
+                    print("Unsupported home feed type: \(type)")
+                }
+            }
+        }
+        return items
     }
     
     private func query(feed: NSArray, for itemType: LykItemType) -> [Any]?{

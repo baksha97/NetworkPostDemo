@@ -13,9 +13,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //
-        LykAppService.shared.retrievePostAndNews(completion: { (posts, news) in
-            print(posts?.count)
-            print(news?.count)
+        LykAppService.shared.retrieveAll(completion: { (items) in
+            print(items?.count)
+           // print(news?.count)
         })
         
     }

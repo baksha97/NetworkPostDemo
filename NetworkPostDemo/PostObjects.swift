@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum LykItemType: String{
+    case news
+    case posts
+}
+
 class RawNewsDetails: Codable{
     var commentCount: String
     var feedTime: String
