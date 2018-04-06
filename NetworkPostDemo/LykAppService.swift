@@ -16,9 +16,6 @@ enum LykItemType: String{
 class LykAppService{
     static let shared = LykAppService()
     
-    var postArray = [RawPostDetails]()
-    var newsArray = [RawNewsDetails]()
-    
     
     var url: URL
     var request: URLRequest    //Param: {"userId":"3196",  "offset": 0, "limit":25 }
@@ -32,20 +29,25 @@ class LykAppService{
         request.httpBody = postString.data(using: .utf8)
     }
     
-    public func run(){
+    //TODO: add error
+    public func retrievePostAndNews(completion: @escaping([RawPostDetails]?, [RawNewsDetails]?) -> Void){
         runURLTask(completion: { (data) in
+            
+            var postArray = [RawPostDetails]()
+            var newsArray = [RawNewsDetails]()
+            
             if let data = data{
                 let json = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as! [String:Any]
-                let feed = self.retrieveResponseFeed(from: json)
+                let feed = self.responseFeed(from: json)
                 //HANDLE OBJECTS
                 
                 if let posts = self.query(feed: feed, for: .posts) as? [RawPostDetails]{
-                    self.postArray = posts
+                    postArray = posts
                 }
                 if let news = self.query(feed: feed, for: .news) as? [RawNewsDetails]{
-                    self.newsArray = news
+                    newsArray = news
                 }
-                
+                completion(postArray, newsArray)
             }else{
                 print("There was an error retrieving your feed items.")
             }
@@ -54,15 +56,14 @@ class LykAppService{
     
     private func runURLTask(completion: @escaping(Data?) -> Void){
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+            guard let data = data, error == nil else {  // check for fundamental networking error
                 print("error=\(String(describing: error))")
                 return
             }
             
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {    // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(httpStatus)")
-                
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString = \(String(describing: responseString))")
             }
@@ -72,7 +73,7 @@ class LykAppService{
         task.resume()
     }
     
-    private func retrieveResponseFeed(from json: [String: Any]) -> NSArray {
+    private func responseFeed(from json: [String: Any]) -> NSArray {
         let response = json["response"] as! [String: Any]
         return (response["feeds"] as! NSArray)
     }
@@ -89,8 +90,9 @@ class LykAppService{
                     if(type == "post"){
                         print("\(type)")
                         do{
-                            let object = try self.decode(as: RawPostDetails.self, data: details as! [String : Any])
-                            items.append(object)
+                            let post = try self.decode(as: RawPostDetails.self, data: details as! [String : Any])
+                            items.append(post)
+                            print(details)
                         } catch{
                             print(error)
                         }
@@ -110,7 +112,7 @@ class LykAppService{
                         do{
                             let object = try self.decode(as: RawNewsDetails.self, data: details as! [String : Any])
                             items.append(object)
-                            print(details)
+                         //   print(details)
                         } catch{
                             print(error)
                         }

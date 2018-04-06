@@ -27,7 +27,7 @@ class RawNewsDetails: Codable{
 
 class RawPostDetails: Codable{
     var commentCount: String
-    //var createdBy: LykUser
+    var createdBy: LykUser?
     var createdOn: String
     var feedTime: String
     var imageUrl: String?

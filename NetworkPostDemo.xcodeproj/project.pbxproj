@@ -15,6 +15,7 @@
 		2EDC5D602076F28C007817EA /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D5F2076F28C007817EA /* Encodable.swift */; };
 		2EDC5D622076F2A8007817EA /* PostObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D612076F2A8007817EA /* PostObjects.swift */; };
 		2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D632076F2D0007817EA /* LykAppService.swift */; };
+		2EDC5D6620770CA5007817EA /* LykUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6520770CA5007817EA /* LykUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2EDC5D5F2076F28C007817EA /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		2EDC5D612076F2A8007817EA /* PostObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostObjects.swift; sourceTree = "<group>"; };
 		2EDC5D632076F2D0007817EA /* LykAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LykAppService.swift; sourceTree = "<group>"; };
+		2EDC5D6520770CA5007817EA /* LykUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LykUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				2EDC5D5F2076F28C007817EA /* Encodable.swift */,
 				2EDC5D612076F2A8007817EA /* PostObjects.swift */,
 				2EDC5D632076F2D0007817EA /* LykAppService.swift */,
+				2EDC5D6520770CA5007817EA /* LykUser.swift */,
 			);
 			path = NetworkPostDemo;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EDC5D622076F2A8007817EA /* PostObjects.swift in Sources */,
+				2EDC5D6620770CA5007817EA /* LykUser.swift in Sources */,
 				2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */,
 				2E32884E207698F000A6D66B /* ViewController.swift in Sources */,
 				2EDC5D602076F28C007817EA /* Encodable.swift in Sources */,
