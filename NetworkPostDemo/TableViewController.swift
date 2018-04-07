@@ -14,7 +14,7 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(HomeFeedCell.self, forCellReuseIdentifier: "HomeFeedCell")
+        self.tableView.register(NewsFeedCell.self, forCellReuseIdentifier: "NewsFeedCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         retrieveData()
         
@@ -23,17 +23,18 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let item = data[indexPath.row]
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "HomeFeedCell") as! HomeFeedCell
-        
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedCell
         switch item {
             case let feedItem as RawPostDetails:
-                cell.titleView.text = feedItem.title
+                cell.body.titleView.text = feedItem.title
             case let feedItem as RawNewsDetails:
-                cell.titleView.text = feedItem.newsTitle
+                cell.body.titleView.text = feedItem.newsTitle
                 if let url = URL(string: feedItem.newsImageUrl){
-                    cell.mainImageView.downloadedFrom(url: url, contentMode: nil)
+                    //cell.body.mainImageView.downloadedFrom(url: url, contentMode: nil)
+                    cell.body.mainImageView.image = UIImage(named: "placeholder.png")
                 }
-                cell.newsDescriptionView.text = feedItem.newsDescription
+                cell.body.newsDescriptionView.text = feedItem.newsDescription
+                cell.body.poweredByView.text = feedItem.poweredBy
             default:
                 print("UNSUPPORTED")
         }
@@ -45,6 +46,9 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//    }
     
     
     
@@ -55,17 +59,8 @@ class TableViewController: UITableViewController {
                 print(items.count)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.tableView.layoutSubviews()
                 }
-//                for item in items{
-//                    switch item {
-//                    case let feedItem as RawPostDetails:
-//                        print("POST \(feedItem.title)")
-//                    case _ as RawNewsDetails:
-//                        print("news")
-//                    default:
-//                        print("UNSUPPORTED")
-//                    }
-//                }
             }
         })
     }

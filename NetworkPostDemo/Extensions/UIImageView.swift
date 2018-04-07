@@ -25,6 +25,7 @@ extension UIImageView {
     }
     
     func downloadedFrom(url: URL, contentMode mode: UIViewContentMode?) {
+    
         if let mode = mode{
             contentMode = mode
         }
