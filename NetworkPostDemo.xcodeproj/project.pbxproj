@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E1F02542079550D009BA404 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1F02532079550D009BA404 /* UIImageView.swift */; };
 		2E32884C207698F000A6D66B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32884B207698F000A6D66B /* AppDelegate.swift */; };
-		2E32884E207698F000A6D66B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32884D207698F000A6D66B /* ViewController.swift */; };
+		2E32884E207698F000A6D66B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32884D207698F000A6D66B /* TableViewController.swift */; };
 		2E328851207698F000A6D66B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E32884F207698F000A6D66B /* Main.storyboard */; };
 		2E328853207698F000A6D66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E328852207698F000A6D66B /* Assets.xcassets */; };
 		2E328856207698F000A6D66B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E328854207698F000A6D66B /* LaunchScreen.storyboard */; };
@@ -16,12 +17,15 @@
 		2EDC5D622076F2A8007817EA /* PostObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D612076F2A8007817EA /* PostObjects.swift */; };
 		2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D632076F2D0007817EA /* LykAppService.swift */; };
 		2EDC5D6620770CA5007817EA /* LykUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6520770CA5007817EA /* LykUser.swift */; };
+		2EDC5D6B2078052A007817EA /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6A2078052A007817EA /* HomeFeedCell.swift */; };
+		2EDC5D6D20780E81007817EA /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6C20780E81007817EA /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E1F02532079550D009BA404 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		2E328848207698F000A6D66B /* NetworkPostDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkPostDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E32884B207698F000A6D66B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2E32884D207698F000A6D66B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2E32884D207698F000A6D66B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2E328850207698F000A6D66B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2E328852207698F000A6D66B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E328855207698F000A6D66B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,6 +34,8 @@
 		2EDC5D612076F2A8007817EA /* PostObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostObjects.swift; sourceTree = "<group>"; };
 		2EDC5D632076F2D0007817EA /* LykAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LykAppService.swift; sourceTree = "<group>"; };
 		2EDC5D6520770CA5007817EA /* LykUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LykUser.swift; sourceTree = "<group>"; };
+		2EDC5D6A2078052A007817EA /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
+		2EDC5D6C20780E81007817EA /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +69,44 @@
 			isa = PBXGroup;
 			children = (
 				2E32884B207698F000A6D66B /* AppDelegate.swift */,
-				2E32884D207698F000A6D66B /* ViewController.swift */,
+				2E32884D207698F000A6D66B /* TableViewController.swift */,
 				2E32884F207698F000A6D66B /* Main.storyboard */,
 				2E328852207698F000A6D66B /* Assets.xcassets */,
 				2E328854207698F000A6D66B /* LaunchScreen.storyboard */,
 				2E328857207698F000A6D66B /* Info.plist */,
-				2EDC5D5F2076F28C007817EA /* Encodable.swift */,
-				2EDC5D612076F2A8007817EA /* PostObjects.swift */,
-				2EDC5D632076F2D0007817EA /* LykAppService.swift */,
-				2EDC5D6520770CA5007817EA /* LykUser.swift */,
+				2EDC5D6A2078052A007817EA /* HomeFeedCell.swift */,
+				2EDC5D67207804D0007817EA /* Services */,
+				2EDC5D68207804E1007817EA /* Models */,
+				2EDC5D69207804F8007817EA /* Extensions */,
 			);
 			path = NetworkPostDemo;
+			sourceTree = "<group>";
+		};
+		2EDC5D67207804D0007817EA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2EDC5D632076F2D0007817EA /* LykAppService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2EDC5D68207804E1007817EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2EDC5D6520770CA5007817EA /* LykUser.swift */,
+				2EDC5D612076F2A8007817EA /* PostObjects.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2EDC5D69207804F8007817EA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2EDC5D5F2076F28C007817EA /* Encodable.swift */,
+				2EDC5D6C20780E81007817EA /* UIView.swift */,
+				2E1F02532079550D009BA404 /* UIImageView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,10 +181,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EDC5D6D20780E81007817EA /* UIView.swift in Sources */,
+				2E1F02542079550D009BA404 /* UIImageView.swift in Sources */,
 				2EDC5D622076F2A8007817EA /* PostObjects.swift in Sources */,
 				2EDC5D6620770CA5007817EA /* LykUser.swift in Sources */,
+				2EDC5D6B2078052A007817EA /* HomeFeedCell.swift in Sources */,
 				2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */,
-				2E32884E207698F000A6D66B /* ViewController.swift in Sources */,
+				2E32884E207698F000A6D66B /* TableViewController.swift in Sources */,
 				2EDC5D602076F28C007817EA /* Encodable.swift in Sources */,
 				2E32884C207698F000A6D66B /* AppDelegate.swift in Sources */,
 			);

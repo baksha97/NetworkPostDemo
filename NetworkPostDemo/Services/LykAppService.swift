@@ -103,20 +103,20 @@ class LykAppService{
             if let details = post["details"] as Any?{
                 switch type {
                 case "post":
-                    print("\(type)")
+                    //print("\(type)")
                     do{
                         let post = try self.decode(as: RawPostDetails.self, data: details as! [String : Any])
                         items.append(post)
-                        print(details)
+                        //print(details)
                     } catch{
                         print(error)
                 }
                 case "news":
-                    print("\(type)")
+                    //print("\(type)")
                     do{
                         let object = try self.decode(as: RawNewsDetails.self, data: details as! [String : Any])
                         items.append(object)
-                        print(details)
+                        //print(details)
                     } catch{
                         print(error)
                     }
