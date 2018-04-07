@@ -88,14 +88,47 @@ class NewsCellBodyView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func defaultImageView() -> UIImageView{
-        let mainImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.layer.masksToBounds = true
-            return imageView
-        }()
-        return mainImageView
-    }
 }
+
+class NewsCellFooterView: UIView{
+    var likeTextView: UITextView = {
+        var textView = UITextView()
+        textView.isSelectable = false
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        return textView
+    }()
+    var commentTextView: UITextView = {
+        var textView = UITextView()
+        textView.isSelectable = false
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        return textView
+    }()
+    var shareTextView: UITextView = {
+        var textView = UITextView()
+        textView.isSelectable = false
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        return textView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(likeTextView)
+        self.addSubview(commentTextView)
+        self.addSubview(shareTextView)
+        likeTextView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: commentTextView.leftAnchor)
+        commentTextView.anchor(top: self.topAnchor, left: likeTextView.rightAnchor, bottom: self.bottomAnchor)
+        shareTextView.anchor(top: self.topAnchor, left: commentTextView.leftAnchor, bottom: self.bottomAnchor)
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
