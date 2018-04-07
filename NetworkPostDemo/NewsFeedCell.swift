@@ -24,11 +24,14 @@ class NewsFeedCell: UITableViewCell{
     }()
 
     var body: NewsCellBodyView = NewsCellBodyView()
+    var footer: NewsCellFooterView = NewsCellFooterView()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(body)
-        body.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        self.addSubview(footer)
+        body.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: footer.topAnchor, right: self.rightAnchor)
+        footer.anchor(top: body.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
     }
     
     
@@ -119,11 +122,12 @@ class NewsCellFooterView: UIView{
         self.addSubview(likeTextView)
         self.addSubview(commentTextView)
         self.addSubview(shareTextView)
-        likeTextView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: commentTextView.leftAnchor)
-        commentTextView.anchor(top: self.topAnchor, left: likeTextView.rightAnchor, bottom: self.bottomAnchor)
-        shareTextView.anchor(top: self.topAnchor, left: commentTextView.leftAnchor, bottom: self.bottomAnchor)
-        
-        
+        likeTextView.anchor(top: self.topAnchor, left: self.leftAnchor,
+                            bottom: self.bottomAnchor, right: commentTextView.leftAnchor)
+        commentTextView.anchor(top: self.topAnchor, left: likeTextView.rightAnchor,
+                               bottom: self.bottomAnchor , right: shareTextView.leftAnchor)
+        shareTextView.anchor(top: self.topAnchor, left: commentTextView.rightAnchor,
+                             bottom: self.bottomAnchor)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -35,6 +35,10 @@ class TableViewController: UITableViewController {
                 }
                 cell.body.newsDescriptionView.text = feedItem.newsDescription
                 cell.body.poweredByView.text = feedItem.poweredBy
+                cell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
+                cell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
+                cell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
+            
             default:
                 print("UNSUPPORTED")
         }
