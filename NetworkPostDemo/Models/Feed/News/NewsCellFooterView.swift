@@ -43,22 +43,25 @@ class NewsCellFooterView: UIView{
     var likeButton: UIButton = {
         var button = UIButton()
         button.contentEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0)
-        button.setTitle("Like", for: .normal)
+        //button.setTitle("Like", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
+        button.setImage(#imageLiteral(resourceName: "likeButton") , for: UIControlState.normal)
         return button
     }()
     var commentButton: UIButton = {
         var button = UIButton()
         button.contentEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0)
-        button.setTitle("Comment", for: .normal)
+        //button.setTitle("Comment", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
+        button.setImage(#imageLiteral(resourceName: "commentButton") , for: UIControlState.normal)
         return button
     }()
     var shareButton: UIButton = {
         var button = UIButton()
         button.contentEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0)
-        button.setTitle("Share", for: .normal)
+        //button.setTitle("Share", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
+        button.setImage(#imageLiteral(resourceName: "shareButton"), for: UIControlState.normal)
         return button
     }()
     var optionsButton: UIButton = {
@@ -90,12 +93,17 @@ class NewsCellFooterView: UIView{
                              bottom: interactionBarTop)
         let informationBarBottom = likeTextView.bottomAnchor
         likeButton.anchor(top: informationBarBottom, left: self.leftAnchor,
-                          bottom: self.bottomAnchor, right: commentButton.leftAnchor,
-                          leftConstant: 10.0)
+                          //bottom: self.bottomAnchor,
+                          right: commentButton.leftAnchor,
+                          //leftConstant: 10.0,
+                          widthConstant: 75, heightConstant: 60)
         commentButton.anchor(top: informationBarBottom, left: likeButton.rightAnchor, bottom: self.bottomAnchor, right:
-        shareButton.leftAnchor)
-        shareButton.anchor(top: informationBarBottom, left: commentButton.rightAnchor, bottom: self.bottomAnchor)
+            shareButton.leftAnchor, widthConstant: 75, heightConstant: 60)
+        shareButton.anchor(top: informationBarBottom, left: commentButton.rightAnchor, bottom: self.bottomAnchor,
+                           widthConstant: 75, heightConstant: 60)
+        
         optionsButton.anchor(top: informationBarBottom, bottom: self.bottomAnchor, right: self.rightAnchor)
+        //
     }
     
     required init?(coder aDecoder: NSCoder) {
