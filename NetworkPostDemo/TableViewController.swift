@@ -16,6 +16,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(NewsFeedCell.self, forCellReuseIdentifier: "NewsFeedCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.insetsContentViewsToSafeArea = true
         retrieveData()
         
     }
@@ -30,9 +31,12 @@ class TableViewController: UITableViewController {
             case let feedItem as RawNewsDetails:
                 cell.body.titleView.text = feedItem.newsTitle
                 if let url = URL(string: feedItem.newsImageUrl){
-                    //cell.body.mainImageView.downloadedFrom(url: url, contentMode: nil)
-                    cell.body.mainImageView.image = UIImage(named: "placeholder.png")
+//                    cell.body.mainImageView.downloadedFrom(url: url, contentMode: nil)
+//                    cell.body.mainImageView.image = UIImage(named: "placeholder.png")
+                    self.tableView.layoutSubviews()
                 }
+                cell.header.nameTextView.text = "LYK"
+                cell.header.timeTextView.text = feedItem.feedTime
                 cell.body.newsDescriptionView.text = feedItem.newsDescription
                 cell.body.poweredByView.text = feedItem.poweredBy
                 cell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"

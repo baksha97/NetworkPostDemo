@@ -18,6 +18,7 @@ class NewsCellBodyView: UIView{
     }()
     var mainImageView: UIImageView = {
         var imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "placeholder")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
