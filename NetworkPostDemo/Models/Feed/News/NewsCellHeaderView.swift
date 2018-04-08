@@ -11,19 +11,23 @@ import UIKit
 class NewsCellHeaderView: UIView{
     var profileImageView: RoundedImageView = {
         var imageView = RoundedImageView()
-        //
-        imageView.image = (#imageLiteral(resourceName: "placeholder"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = UIColor.black
         return imageView
     }()
-    var nameTextView: UITextView = {
-        var textView = UITextView()
-        textView.isSelectable = false
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        return textView
+    var nameLabel: UILabel = {
+        var label = UILabel()
+        let attributes = NSMutableAttributedString(string: " ",
+                                                   attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+        label.attributedText = attributes
+        return label
     }()
     var timeTextView: UITextView = {
         var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: " ",
+                                                   attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),
+                                                                NSAttributedStringKey.foregroundColor: UIColor.darkGray])
+        textView.attributedText = attributes
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -32,14 +36,15 @@ class NewsCellHeaderView: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.blue
         self.addSubview(profileImageView)
-        self.addSubview(nameTextView)
+        self.addSubview(nameLabel)
         self.addSubview(timeTextView)
-        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nameTextView.leftAnchor)
-        nameTextView.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
+        self.frame = self.frame.insetBy(dx: 10.0, dy: 10.0)
+        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, widthConstant: 50, heightConstant: 50)
+        nameLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
                                    bottom: timeTextView.topAnchor, right: self.rightAnchor)
-        timeTextView.anchor(top: nameTextView.bottomAnchor, left: profileImageView.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        timeTextView.anchor(top: nameLabel.bottomAnchor, left: profileImageView.rightAnchor,
+                            bottom: self.bottomAnchor, right: self.rightAnchor)
        
     }
     

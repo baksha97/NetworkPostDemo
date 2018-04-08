@@ -24,7 +24,7 @@ extension UIImageView {
         return CGSize(width: -1.0, height: -1.0)
     }
     
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode?) {
+    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode?, completion: @escaping(Bool) -> Void) {
     
         if let mode = mode{
             contentMode = mode
@@ -38,6 +38,7 @@ extension UIImageView {
                 else { return }
             DispatchQueue.main.async() {
                 self.image = image
+                completion(true)
             }
             }.resume()
     }

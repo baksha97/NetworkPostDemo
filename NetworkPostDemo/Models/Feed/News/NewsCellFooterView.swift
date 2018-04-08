@@ -11,8 +11,9 @@ import UIKit
 class NewsCellFooterView: UIView{
     var likeTextView: UITextView = {
         var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        textView.attributedText = attributes
         textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 0);
-        //textView.contentEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -20,6 +21,8 @@ class NewsCellFooterView: UIView{
     }()
     var commentTextView: UITextView = {
         var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        textView.attributedText = attributes
         textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 0);
         textView.isSelectable = false
         textView.isEditable = false
@@ -28,6 +31,8 @@ class NewsCellFooterView: UIView{
     }()
     var shareTextView: UITextView = {
         var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        textView.attributedText = attributes
         textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 0);
         textView.isSelectable = false
         textView.isEditable = false

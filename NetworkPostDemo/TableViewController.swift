@@ -31,11 +31,14 @@ class TableViewController: UITableViewController {
             case let feedItem as RawNewsDetails:
                 cell.body.titleView.text = feedItem.newsTitle
                 if let url = URL(string: feedItem.newsImageUrl){
-//                    cell.body.mainImageView.downloadedFrom(url: url, contentMode: nil)
-//                    cell.body.mainImageView.image = UIImage(named: "placeholder.png")
-                    self.tableView.layoutSubviews()
+                    cell.body.mainImageView.downloadedFrom(url: url, contentMode: nil, completion: { (completed) in
+                        if(completed == true){
+                            cell.layoutSubviews()
+                            self.tableView.layoutSubviews()
+                        }
+                    })
                 }
-                cell.header.nameTextView.text = "LYK"
+                cell.header.nameLabel.text = "  LYK"
                 cell.header.timeTextView.text = feedItem.feedTime
                 cell.body.newsDescriptionView.text = feedItem.newsDescription
                 cell.body.poweredByView.text = feedItem.poweredBy
@@ -54,11 +57,6 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
-    
-    
     
     func retrieveData(){
         LykAppService.shared.retrieveAll(completion: { (items) in
@@ -67,7 +65,6 @@ class TableViewController: UITableViewController {
                 print(items.count)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    self.tableView.layoutSubviews()
                 }
             }
         })

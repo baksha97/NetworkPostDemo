@@ -11,6 +11,9 @@ import UIKit
 class NewsCellBodyView: UIView{
     var titleView: UITextView = {
         var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)])
+        textView.attributedText = attributes
+        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 12)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -18,7 +21,6 @@ class NewsCellBodyView: UIView{
     }()
     var mainImageView: UIImageView = {
         var imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "placeholder")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
@@ -26,6 +28,9 @@ class NewsCellBodyView: UIView{
     }()
     var newsDescriptionView: UITextView = {
         var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        textView.attributedText = attributes
+        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 12)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -33,6 +38,10 @@ class NewsCellBodyView: UIView{
     }()
     var poweredByView: UITextView = {
         var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: " ",
+                                                   attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),
+                                                                NSAttributedStringKey.foregroundColor: UIColor.darkGray])
+        textView.attributedText = attributes
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
