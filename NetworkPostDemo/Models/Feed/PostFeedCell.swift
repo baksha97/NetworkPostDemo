@@ -28,4 +28,8 @@ class PostFeedCell: UITableViewCell{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        self.layoutSubviews()
+    }
 }

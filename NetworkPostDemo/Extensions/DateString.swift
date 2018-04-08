@@ -68,7 +68,7 @@ extension Date{
             return "\(second) seconds ago"
         }
         
-        return "Error"
+        return "Just now"
         
     }
 }

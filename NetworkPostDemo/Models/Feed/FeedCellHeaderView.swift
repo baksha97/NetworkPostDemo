@@ -22,7 +22,7 @@ class FeedCellHeaderView: UIView{
     }()
     var timeTextView: UITextView = {
         var textView = UITextView()
-        let attributes = NSMutableAttributedString(string: " ",
+        let attributes = NSMutableAttributedString(string: "-",
                                                    attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),
                                                                 NSAttributedStringKey.foregroundColor: UIColor.darkGray])
         textView.attributedText = attributes
@@ -37,7 +37,6 @@ class FeedCellHeaderView: UIView{
         self.addSubview(profileImageView)
         self.addSubview(nameLabel)
         self.addSubview(timeTextView)
-        self.frame = self.frame.insetBy(dx: 10.0, dy: 10.0)
         profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, widthConstant: 50, heightConstant: 50)
         nameLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
                                    bottom: timeTextView.topAnchor, right: self.rightAnchor)

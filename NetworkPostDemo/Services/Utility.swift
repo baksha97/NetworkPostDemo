@@ -13,7 +13,6 @@ class Utility{
     
     static func lykTime(from lykDateString: String) -> Date{
         //yyyy-dd-MM HH:mm:ss: lyk format
-        print(lykDateString.debugDescription)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         //dateFormatter.locale = Locale(identifier: "en_US_POSIX") // TODO: CHANGE TO CONTEXT

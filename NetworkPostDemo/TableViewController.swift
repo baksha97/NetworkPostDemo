@@ -39,7 +39,8 @@ class TableViewController: UITableViewController {
                 
                 postCell.body.titleView.text = feedItem.title
                 if let feedItemImageUrl = feedItem.imageUrl{
-                    postCell.body.mainImageView.loadAsyncFrom(url: feedItemImageUrl, placeholder: nil)
+                   // postCell.body.mainImageView.loadAsyncFrom(url: feedItemImageUrl, placeholder: nil)
+                    print("post image currently unsupported for \(feedItemImageUrl)")
                 }
                 postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
                 postCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
