@@ -14,8 +14,8 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(PostFeedCell.self, forCellReuseIdentifier: "PostFeedCell")
-        self.tableView.register(NewsFeedCell.self, forCellReuseIdentifier: "NewsFeedCell")
+        self.tableView.register(PostFeedTableViewCell.self, forCellReuseIdentifier: "PostFeedCell")
+        self.tableView.register(NewsFeedTableViewCell.self, forCellReuseIdentifier: "NewsFeedCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 450.0
         self.tableView.insetsContentViewsToSafeArea = true
@@ -25,8 +25,8 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = data[indexPath.row]
-        let newsCell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedCell
-        let postCell = self.tableView.dequeueReusableCell(withIdentifier: "PostFeedCell") as! PostFeedCell
+        let newsCell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedTableViewCell
+        let postCell = self.tableView.dequeueReusableCell(withIdentifier: "PostFeedCell") as! PostFeedTableViewCell
         switch item {
             case let feedItem as RawPostDetails:
                 postCell.header.nameLabel.text = feedItem.createdBy.firstName

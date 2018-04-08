@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostFeedCell: UITableViewCell{
+class PostFeedTableViewCell: UITableViewCell{
     var header: FeedCellHeaderView = FeedCellHeaderView()
     var body: PostCellBodyView = PostCellBodyView()
     var footer: FeedCellFooterView = FeedCellFooterView()
@@ -29,7 +29,4 @@ class PostFeedCell: UITableViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        self.layoutSubviews()
-    }
 }

@@ -17,18 +17,21 @@
 		2E144747207A996300E19CEE /* AyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E144746207A996300E19CEE /* AyncImageView.swift */; };
 		2E144749207A9C4600E19CEE /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E144748207A9C4600E19CEE /* Utility.swift */; };
 		2E14474C207AB06A00E19CEE /* PostCellBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E14474B207AB06A00E19CEE /* PostCellBodyView.swift */; };
-		2E14474E207AB12700E19CEE /* PostFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E14474D207AB12700E19CEE /* PostFeedCell.swift */; };
+		2E14474E207AB12700E19CEE /* PostFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E14474D207AB12700E19CEE /* PostFeedTableViewCell.swift */; };
 		2E1F02542079550D009BA404 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1F02532079550D009BA404 /* UIImageView.swift */; };
 		2E32884C207698F000A6D66B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32884B207698F000A6D66B /* AppDelegate.swift */; };
 		2E32884E207698F000A6D66B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32884D207698F000A6D66B /* TableViewController.swift */; };
 		2E328851207698F000A6D66B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E32884F207698F000A6D66B /* Main.storyboard */; };
 		2E328853207698F000A6D66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E328852207698F000A6D66B /* Assets.xcassets */; };
 		2E328856207698F000A6D66B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E328854207698F000A6D66B /* LaunchScreen.storyboard */; };
+		2E6AD545207AC0F40097B438 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AD544207AC0F40097B438 /* CollectionViewController.swift */; };
+		2E6AD547207AC1BB0097B438 /* PostFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AD546207AC1BB0097B438 /* PostFeedCollectionViewCell.swift */; };
+		2E6AD549207AC7E30097B438 /* NewsFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AD548207AC7E30097B438 /* NewsFeedCollectionViewCell.swift */; };
 		2EDC5D602076F28C007817EA /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D5F2076F28C007817EA /* Encodable.swift */; };
 		2EDC5D622076F2A8007817EA /* PostObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D612076F2A8007817EA /* PostObjects.swift */; };
 		2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D632076F2D0007817EA /* LykAppService.swift */; };
 		2EDC5D6620770CA5007817EA /* LykUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6520770CA5007817EA /* LykUser.swift */; };
-		2EDC5D6B2078052A007817EA /* NewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6A2078052A007817EA /* NewsFeedCell.swift */; };
+		2EDC5D6B2078052A007817EA /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6A2078052A007817EA /* NewsFeedTableViewCell.swift */; };
 		2EDC5D6D20780E81007817EA /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC5D6C20780E81007817EA /* UIView.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +46,7 @@
 		2E144746207A996300E19CEE /* AyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyncImageView.swift; sourceTree = "<group>"; };
 		2E144748207A9C4600E19CEE /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		2E14474B207AB06A00E19CEE /* PostCellBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellBodyView.swift; sourceTree = "<group>"; };
-		2E14474D207AB12700E19CEE /* PostFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedCell.swift; sourceTree = "<group>"; };
+		2E14474D207AB12700E19CEE /* PostFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedTableViewCell.swift; sourceTree = "<group>"; };
 		2E1F02532079550D009BA404 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		2E328848207698F000A6D66B /* NetworkPostDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkPostDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E32884B207698F000A6D66B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,11 +55,14 @@
 		2E328852207698F000A6D66B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E328855207698F000A6D66B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E328857207698F000A6D66B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E6AD544207AC0F40097B438 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		2E6AD546207AC1BB0097B438 /* PostFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E6AD548207AC7E30097B438 /* NewsFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		2EDC5D5F2076F28C007817EA /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		2EDC5D612076F2A8007817EA /* PostObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostObjects.swift; sourceTree = "<group>"; };
 		2EDC5D632076F2D0007817EA /* LykAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LykAppService.swift; sourceTree = "<group>"; };
 		2EDC5D6520770CA5007817EA /* LykUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LykUser.swift; sourceTree = "<group>"; };
-		2EDC5D6A2078052A007817EA /* NewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCell.swift; sourceTree = "<group>"; };
+		2EDC5D6A2078052A007817EA /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		2EDC5D6C20780E81007817EA /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,8 +80,10 @@
 		2E109FAA2079894100C0E49F /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				2E14474D207AB12700E19CEE /* PostFeedCell.swift */,
-				2EDC5D6A2078052A007817EA /* NewsFeedCell.swift */,
+				2E6AD546207AC1BB0097B438 /* PostFeedCollectionViewCell.swift */,
+				2E6AD548207AC7E30097B438 /* NewsFeedCollectionViewCell.swift */,
+				2E14474D207AB12700E19CEE /* PostFeedTableViewCell.swift */,
+				2EDC5D6A2078052A007817EA /* NewsFeedTableViewCell.swift */,
 				2E109FB02079958A00C0E49F /* FeedCellHeaderView.swift */,
 				2E109FAE207989BB00C0E49F /* FeedCellFooterView.swift */,
 				2E14474A207AB04C00E19CEE /* Posts */,
@@ -121,6 +129,7 @@
 			children = (
 				2E32884B207698F000A6D66B /* AppDelegate.swift */,
 				2E32884D207698F000A6D66B /* TableViewController.swift */,
+				2E6AD544207AC0F40097B438 /* CollectionViewController.swift */,
 				2E32884F207698F000A6D66B /* Main.storyboard */,
 				2E328852207698F000A6D66B /* Assets.xcassets */,
 				2E328854207698F000A6D66B /* LaunchScreen.storyboard */,
@@ -241,20 +250,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EDC5D6D20780E81007817EA /* UIView.swift in Sources */,
-				2E14474E207AB12700E19CEE /* PostFeedCell.swift in Sources */,
+				2E14474E207AB12700E19CEE /* PostFeedTableViewCell.swift in Sources */,
 				2E1F02542079550D009BA404 /* UIImageView.swift in Sources */,
 				2EDC5D622076F2A8007817EA /* PostObjects.swift in Sources */,
 				2EDC5D6620770CA5007817EA /* LykUser.swift in Sources */,
-				2EDC5D6B2078052A007817EA /* NewsFeedCell.swift in Sources */,
+				2EDC5D6B2078052A007817EA /* NewsFeedTableViewCell.swift in Sources */,
 				2E109FA720797C4900C0E49F /* DateString.swift in Sources */,
 				2E109FAD2079896000C0E49F /* NewsCellBodyView.swift in Sources */,
+				2E6AD547207AC1BB0097B438 /* PostFeedCollectionViewCell.swift in Sources */,
 				2E109FB12079958A00C0E49F /* FeedCellHeaderView.swift in Sources */,
 				2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */,
 				2E32884E207698F000A6D66B /* TableViewController.swift in Sources */,
 				2E109FB320799F3D00C0E49F /* RoundedImageView.swift in Sources */,
+				2E6AD545207AC0F40097B438 /* CollectionViewController.swift in Sources */,
 				2E14474C207AB06A00E19CEE /* PostCellBodyView.swift in Sources */,
 				2E144747207A996300E19CEE /* AyncImageView.swift in Sources */,
 				2EDC5D602076F28C007817EA /* Encodable.swift in Sources */,
+				2E6AD549207AC7E30097B438 /* NewsFeedCollectionViewCell.swift in Sources */,
 				2E109FAF207989BB00C0E49F /* FeedCellFooterView.swift in Sources */,
 				2E32884C207698F000A6D66B /* AppDelegate.swift in Sources */,
 				2E144749207A9C4600E19CEE /* Utility.swift in Sources */,
