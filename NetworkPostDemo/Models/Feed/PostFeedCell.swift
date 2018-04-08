@@ -1,16 +1,16 @@
 //
-//  HomeFeedCell.swift
+//  PostFeedCell.swift
 //  NetworkPostDemo
 //
-//  Created by Loaner on 4/6/18.
+//  Created by Loaner on 4/8/18.
 //  Copyright © 2018 baksha97. All rights reserved.
 //
 
 import UIKit
 
-class NewsFeedCell: UITableViewCell{
+class PostFeedCell: UITableViewCell{
     var header: FeedCellHeaderView = FeedCellHeaderView()
-    var body: NewsCellBodyView = NewsCellBodyView()
+    var body: PostCellBodyView = PostCellBodyView()
     var footer: FeedCellFooterView = FeedCellFooterView()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -20,7 +20,7 @@ class NewsFeedCell: UITableViewCell{
         self.addSubview(footer)
         header.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor,
                       topConstant: 12, leftConstant: 12)
-                      //bottom: body.topAnchor, right: self.rightAnchor)
+        //bottom: body.topAnchor, right: self.rightAnchor)
         body.anchor(top: header.bottomAnchor, left: self.leftAnchor, bottom: footer.topAnchor, right: self.rightAnchor)
         footer.anchor(top: body.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
     }
@@ -29,6 +29,3 @@ class NewsFeedCell: UITableViewCell{
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
-

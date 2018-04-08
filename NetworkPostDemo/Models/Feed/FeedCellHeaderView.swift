@@ -8,10 +8,9 @@
 
 import UIKit
 
-class NewsCellHeaderView: UIView{
+class FeedCellHeaderView: UIView{
     var profileImageView: RoundedImageView = {
         var imageView = RoundedImageView()
-        //imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     var nameLabel: UILabel = {

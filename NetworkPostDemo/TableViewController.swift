@@ -14,6 +14,7 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(PostFeedCell.self, forCellReuseIdentifier: "PostFeedCell")
         self.tableView.register(NewsFeedCell.self, forCellReuseIdentifier: "NewsFeedCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 450.0
@@ -24,29 +25,42 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = data[indexPath.row]
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedCell
+        let newsCell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedCell
+        let postCell = self.tableView.dequeueReusableCell(withIdentifier: "PostFeedCell") as! PostFeedCell
         switch item {
             case let feedItem as RawPostDetails:
-                cell.body.titleView.text = "POST"
+                postCell.header.nameLabel.text = feedItem.createdBy.firstName
+                if let profileImageUrl = feedItem.createdBy.imageUrl{
+                    postCell.header.profileImageView.loadAsyncFrom(url: profileImageUrl, placeholder: nil)
+                }else{
+                    postCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
+                }
+                postCell.header.timeTextView.text = Utility.lykTime(from: feedItem.feedTime).timeAgoSince()
+                
+                postCell.body.titleView.text = feedItem.title
+                if let feedItemImageUrl = feedItem.imageUrl{
+                    postCell.body.mainImageView.loadAsyncFrom(url: feedItemImageUrl, placeholder: nil)
+                }
+                postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
+                postCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
+                postCell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
+                return postCell
             case let feedItem as RawNewsDetails:
-               // https://lh3.googleusercontent.com/FCZvYelx3J350wRkL-xGxRQij4Ng4ySDmssO6sczrrdIEtFEerKIvVxI7I-nC0XqxoF8=s360-rw
-                cell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
-                cell.header.nameLabel.text = "  LYK"
-                cell.header.timeTextView.text = Utility.lykTime(from: feedItem.feedTime).timeAgoSince()//feedItem.feedTime
-                cell.body.titleView.text = feedItem.newsTitle
-                cell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
-                cell.body.newsDescriptionView.text = feedItem.newsDescription
-                cell.body.poweredByView.text = feedItem.poweredBy
-                cell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
-                cell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
-                cell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
-            
+                newsCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
+                newsCell.header.nameLabel.text = "LYK"
+                newsCell.header.timeTextView.text = Utility.lykTime(from: feedItem.feedTime).timeAgoSince()//feedItem.feedTime
+                newsCell.body.titleView.text = feedItem.newsTitle
+                newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
+                newsCell.body.newsDescriptionView.text = feedItem.newsDescription
+                newsCell.body.poweredByView.text = feedItem.poweredBy
+                newsCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
+                newsCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
+                newsCell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
+                return newsCell
             default:
                 print("UNSUPPORTED")
         }
-        
-        cell.layoutSubviews()
-        return cell
+        return UITableViewCell()
     }
    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +71,6 @@ class TableViewController: UITableViewController {
         LykAppService.shared.retrieveAll(completion: { (items) in
             if let items = items{
                 self.data = items
-                print(items.count)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsCellFooterView: UIView{
+class FeedCellFooterView: UIView{
     var likeTextView: UITextView = {
         var textView = UITextView()
         let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
