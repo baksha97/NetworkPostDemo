@@ -13,19 +13,11 @@ class FeedCellHeaderView: UIView{
         var imageView = RoundedImageView()
         return imageView
     }()
-    var nameLabel: UILabel = {
-        var label = UILabel()
-        let attributes = NSMutableAttributedString(string: " ",
-                                                   attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
-        label.attributedText = attributes
-        return label
-    }()
-    var timeTextView: UITextView = {
+    var informationView: UITextView = {
         var textView = UITextView()
-        let attributes = NSMutableAttributedString(string: "-",
-                                                   attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),
-                                                                NSAttributedStringKey.foregroundColor: UIColor.darkGray])
-        textView.attributedText = attributes
+        let attributes = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12)]
+        textView.attributedText = NSAttributedString(string: " ", attributes: attributes)
+        textView.textContainerInset = UIEdgeInsetsMake(20, 4, 0, 0)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -35,13 +27,11 @@ class FeedCellHeaderView: UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(profileImageView)
-        self.addSubview(nameLabel)
-        self.addSubview(timeTextView)
-        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, widthConstant: 50, heightConstant: 50)
-        nameLabel.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
-                                   bottom: timeTextView.topAnchor, right: self.rightAnchor)
-        timeTextView.anchor(top: nameLabel.bottomAnchor, left: profileImageView.rightAnchor,
-                            bottom: self.bottomAnchor, right: self.rightAnchor)
+        self.addSubview(informationView)
+        
+        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, widthConstant: 75, heightConstant: 75)
+        informationView.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
+                                   bottom: self.bottomAnchor, right: self.rightAnchor)
        
     }
     

@@ -23,7 +23,7 @@ class NewsCellBodyView: UIView{
         var textView = UITextView()
         let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)])
         textView.attributedText = attributes
-        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 12)
+        textView.textContainerInset = UIEdgeInsetsMake(12, 12, 12, 12)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -40,7 +40,19 @@ class NewsCellBodyView: UIView{
         var textView = UITextView()
         let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
         textView.attributedText = attributes
-        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 12)
+        textView.textContainerInset = UIEdgeInsetsMake(8, 12, 8, 12)
+        textView.isSelectable = false
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        return textView
+    }()
+    var sourceTextView: UITextView = {
+        var textView = UITextView()
+        let attributes = NSMutableAttributedString(string: "SOURCE", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        textView.attributedText = attributes
+        textView.textColor = UIColor.white
+        textView.backgroundColor = UIColor.red
+        textView.textContainerInset = UIEdgeInsetsMake(8, 12, 8, 12)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -70,6 +82,8 @@ class NewsCellBodyView: UIView{
                          bottom: mainImageView.topAnchor, right: self.rightAnchor)
         mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
                              bottom: newsDescriptionView.topAnchor, right: self.rightAnchor)
+        mainImageView.addSubview(sourceTextView)
+        sourceTextView.anchor(bottom: mainImageView.bottomAnchor, right: mainImageView.rightAnchor)
         newsDescriptionView.anchor(top: mainImageView.bottomAnchor, left: self.leftAnchor,
                                    bottom: poweredByView.topAnchor, right: self.rightAnchor)
         poweredByView.anchor(top: newsDescriptionView.bottomAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)

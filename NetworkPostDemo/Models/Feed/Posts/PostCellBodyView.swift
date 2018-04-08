@@ -22,7 +22,7 @@ class PostCellBodyView: UIView{
         var textView = UITextView()
         let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)])
         textView.attributedText = attributes
-        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 12)
+        textView.textContainerInset = UIEdgeInsetsMake(12, 12, 12, 12)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false

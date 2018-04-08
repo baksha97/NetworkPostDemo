@@ -26,7 +26,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     // MARK: UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: 500)
+        return CGSize(width: view.bounds.width, height: 475)
     }
 
 
@@ -41,14 +41,13 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         let newsCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: newsCellId, for: indexPath) as! NewsFeedCollectionViewCell
         switch item {
         case let feedItem as RawPostDetails:
-            postCell.header.nameLabel.text = feedItem.createdBy.firstName
+            postCell.header.informationView.text = feedItem.createdBy.firstName
             if let profileImageUrl = feedItem.createdBy.imageUrl{
                 postCell.header.profileImageView.loadAsyncFrom(url: profileImageUrl, placeholder: nil)
             }else{
                 postCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
             }
-            postCell.header.timeTextView.text = Utility.lykTime(from: feedItem.feedTime).timeAgoSince()
-            
+           
             postCell.body.titleView.text = feedItem.title
             if let feedItemImageUrl = feedItem.imageUrl{
                 // postCell.body.mainImageView.loadAsyncFrom(url: feedItemImageUrl, placeholder: nil)
@@ -60,8 +59,8 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             return postCell
         case let feedItem as RawNewsDetails:
             newsCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
-            newsCell.header.nameLabel.text = " LYK"
-            newsCell.header.timeTextView.text = Utility.lykTime(from: feedItem.feedTime).timeAgoSince()//feedItem.feedTime
+            newsCell.header.informationView.text = " LYK"
+            
             newsCell.body.titleView.text = feedItem.newsTitle
             newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
             newsCell.body.newsDescriptionView.text = feedItem.newsDescription
