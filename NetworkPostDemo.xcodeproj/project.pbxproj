@@ -14,6 +14,8 @@
 		2E109FB12079958A00C0E49F /* NewsCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E109FB02079958A00C0E49F /* NewsCellHeaderView.swift */; };
 		2E109FB320799F3D00C0E49F /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E109FB220799F3D00C0E49F /* RoundedImageView.swift */; };
 		2E109FB52079A3D400C0E49F /* download.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2E109FB42079A3D400C0E49F /* download.jpeg */; };
+		2E144747207A996300E19CEE /* AyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E144746207A996300E19CEE /* AyncImageView.swift */; };
+		2E144749207A9C4600E19CEE /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E144748207A9C4600E19CEE /* Utility.swift */; };
 		2E1F02542079550D009BA404 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1F02532079550D009BA404 /* UIImageView.swift */; };
 		2E32884C207698F000A6D66B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32884B207698F000A6D66B /* AppDelegate.swift */; };
 		2E32884E207698F000A6D66B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32884D207698F000A6D66B /* TableViewController.swift */; };
@@ -37,6 +39,8 @@
 		2E109FB02079958A00C0E49F /* NewsCellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellHeaderView.swift; sourceTree = "<group>"; };
 		2E109FB220799F3D00C0E49F /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		2E109FB42079A3D400C0E49F /* download.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = download.jpeg; sourceTree = "<group>"; };
+		2E144746207A996300E19CEE /* AyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyncImageView.swift; sourceTree = "<group>"; };
+		2E144748207A9C4600E19CEE /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		2E1F02532079550D009BA404 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		2E328848207698F000A6D66B /* NetworkPostDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkPostDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E32884B207698F000A6D66B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				2EDC5D632076F2D0007817EA /* LykAppService.swift */,
+				2E144746207A996300E19CEE /* AyncImageView.swift */,
+				2E144748207A9C4600E19CEE /* Utility.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -235,9 +241,11 @@
 				2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */,
 				2E32884E207698F000A6D66B /* TableViewController.swift in Sources */,
 				2E109FB320799F3D00C0E49F /* RoundedImageView.swift in Sources */,
+				2E144747207A996300E19CEE /* AyncImageView.swift in Sources */,
 				2EDC5D602076F28C007817EA /* Encodable.swift in Sources */,
 				2E109FAF207989BB00C0E49F /* NewsCellFooterView.swift in Sources */,
 				2E32884C207698F000A6D66B /* AppDelegate.swift in Sources */,
+				2E144749207A9C4600E19CEE /* Utility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

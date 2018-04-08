@@ -1,14 +1,19 @@
 //
-//  RoundedImageView.swift
+//  AsyncImage.swift
 //  NetworkPostDemo
 //
-//  Created by Loaner on 4/7/18.
+//  Created by Loaner on 4/8/18.
 //  Copyright © 2018 baksha97. All rights reserved.
 //
 
 import UIKit
 
-class RoundedImageView: UIImageView {
+//MARK: - 'asyncImagesCashArray' is a global varible cashed UIImage
+var asyncImagesCashArray = NSCache<NSString, UIImage>()
+
+class AyncImageView: UIImageView {
+    
+    //MARK: - Variables
     private var currentURL: NSString?
     
     //MARK: - Public Methods
@@ -43,12 +48,4 @@ class RoundedImageView: UIImageView {
             }
             }.resume()
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let radius: CGFloat = self.bounds.size.width / 2.0
-        self.layer.cornerRadius = radius
-        self.clipsToBounds = true
-    }
 }
-

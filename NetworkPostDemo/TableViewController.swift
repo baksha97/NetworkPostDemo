@@ -16,30 +16,25 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(NewsFeedCell.self, forCellReuseIdentifier: "NewsFeedCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 450.0
         self.tableView.insetsContentViewsToSafeArea = true
         retrieveData()
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let item = data[indexPath.row]
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedCell
         switch item {
             case let feedItem as RawPostDetails:
-                cell.body.titleView.text = feedItem.title
+                cell.body.titleView.text = "POST"
             case let feedItem as RawNewsDetails:
-                cell.body.titleView.text = feedItem.newsTitle
-                if let url = URL(string: feedItem.newsImageUrl){
-                    cell.body.mainImageView.downloadedFrom(url: url, contentMode: nil, completion: { (completed) in
-                        if(completed == true){
-                            cell.layoutSubviews()
-                            self.tableView.layoutSubviews()
-                        }
-                    })
-                }
+               // https://lh3.googleusercontent.com/FCZvYelx3J350wRkL-xGxRQij4Ng4ySDmssO6sczrrdIEtFEerKIvVxI7I-nC0XqxoF8=s360-rw
+                cell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
                 cell.header.nameLabel.text = "  LYK"
-                cell.header.timeTextView.text = feedItem.feedTime
+                cell.header.timeTextView.text = Utility.lykTime(from: feedItem.feedTime).timeAgoSince()//feedItem.feedTime
+                cell.body.titleView.text = feedItem.newsTitle
+                cell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
                 cell.body.newsDescriptionView.text = feedItem.newsDescription
                 cell.body.poweredByView.text = feedItem.poweredBy
                 cell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
@@ -53,7 +48,7 @@ class TableViewController: UITableViewController {
         cell.layoutSubviews()
         return cell
     }
-    
+   
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }

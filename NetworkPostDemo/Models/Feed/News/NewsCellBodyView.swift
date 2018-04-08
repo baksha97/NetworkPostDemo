@@ -9,6 +9,16 @@
 import UIKit
 
 class NewsCellBodyView: UIView{
+    
+    
+    var urlString: String? {
+        didSet {
+            if let url = urlString {
+                mainImageView.loadAsyncFrom(url: url, placeholder: nil)
+            }
+        }
+    }
+    
     var titleView: UITextView = {
         var textView = UITextView()
         let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)])
@@ -19,8 +29,8 @@ class NewsCellBodyView: UIView{
         textView.isScrollEnabled = false
         return textView
     }()
-    var mainImageView: UIImageView = {
-        var imageView = UIImageView()
+    var mainImageView: AyncImageView = {
+        var imageView = AyncImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true

@@ -11,8 +11,7 @@ import UIKit
 class NewsCellHeaderView: UIView{
     var profileImageView: RoundedImageView = {
         var imageView = RoundedImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = UIColor.black
+        //imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     var nameLabel: UILabel = {
