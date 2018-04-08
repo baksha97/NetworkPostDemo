@@ -48,7 +48,7 @@ class TableViewController: UITableViewController {
                 return postCell
             case let feedItem as RawNewsDetails:
                 newsCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
-                newsCell.header.nameLabel.text = "LYK"
+                newsCell.header.nameLabel.text = " LYK"
                 newsCell.header.timeTextView.text = Utility.lykTime(from: feedItem.feedTime).timeAgoSince()//feedItem.feedTime
                 newsCell.body.titleView.text = feedItem.newsTitle
                 newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
