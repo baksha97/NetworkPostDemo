@@ -16,12 +16,16 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
 
     var data = [Any]()
     
-    //TODO: UPDATE WITH TABLEVIEW CONFIGURATION 
+    //TODO: UPDATE WITH TABLEVIEW CONFIGURATION
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        retrieveData()
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 10;
         collectionView?.setCollectionViewLayout(flowLayout, animated: true)
         self.collectionView!.register(PostFeedCollectionViewCell.self, forCellWithReuseIdentifier: postCellId)
         self.collectionView!.register(NewsFeedCollectionViewCell.self, forCellWithReuseIdentifier: newsCellId)

@@ -15,6 +15,11 @@ private let postBaseUrl = "https://www.lykapp.com/lykjwt/uploads/images/"
 class TableViewController: UITableViewController {
     
     var data = [Any]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
