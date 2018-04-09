@@ -10,6 +10,7 @@ import Foundation
 
 extension Date{
     
+    //conversion for timestamps in home feed
     public func timeAgoSince() -> String {
         let calendar = Calendar.current
         let now = Date()
@@ -74,7 +75,6 @@ extension Date{
 }
 
 extension String {
-    
     func removingWhitespaces() -> String {
         return components(separatedBy: .whitespaces).joined()
     }

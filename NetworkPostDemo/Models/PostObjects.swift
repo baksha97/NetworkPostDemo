@@ -8,10 +8,13 @@
 
 import Foundation
 
+//type enum for LykAppService
 enum LykItemType: String{
     case news
     case posts
 }
+
+//object used by database
 
 class PostDetails: Codable{
     var commentCount: String

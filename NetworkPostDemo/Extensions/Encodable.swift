@@ -12,9 +12,8 @@ enum EncodingError: Error {
     case encodingError
 }
 
-
+//database encoding -if needed. 
 extension Encodable{
-    
     func toJson(excluding keys: [String] = [String]()) throws -> [String: Any] {
         let objectData = try JSONEncoder().encode(self)
         ///might need future modification
@@ -24,7 +23,6 @@ extension Encodable{
         for key in keys{
             json[key] = nil
         }
-        
         return json
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+//object used by database
 class LykUser: Codable{
     var contactNo: String?
     var countryCode: String?

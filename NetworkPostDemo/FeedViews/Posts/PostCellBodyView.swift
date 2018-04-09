@@ -36,6 +36,7 @@ class PostCellBodyView: UIView{
         return imageView
     }()
     
+    //for when a post does not have an image --- it may be more appropriate to create an entirely new cell
     func removeImageView(){
         self.mainImageView.isHidden = true
     }

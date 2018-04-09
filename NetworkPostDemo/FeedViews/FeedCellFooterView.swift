@@ -8,6 +8,7 @@
 
 import UIKit
 
+//footer to be used for all feed cells
 class FeedCellFooterView: UIView{
     var likeTextView: UITextView = {
         var textView = UITextView()

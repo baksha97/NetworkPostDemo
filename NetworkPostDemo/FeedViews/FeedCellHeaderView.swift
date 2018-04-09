@@ -8,6 +8,7 @@
 
 import UIKit
 
+//header to be used for all feed cells
 class FeedCellHeaderView: UIView{
     var profileImageView: RoundedImageView = {
         var imageView = RoundedImageView()
