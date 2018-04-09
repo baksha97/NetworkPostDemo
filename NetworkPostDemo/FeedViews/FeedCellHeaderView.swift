@@ -17,7 +17,7 @@ class FeedCellHeaderView: UIView{
         var textView = UITextView()
         let attributes = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12)]
         textView.attributedText = NSAttributedString(string: " ", attributes: attributes)
-        textView.textContainerInset = UIEdgeInsetsMake(20, 4, 0, 0)
+        textView.textContainerInset = UIEdgeInsetsMake(12, 4, 0, 0)
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -29,7 +29,7 @@ class FeedCellHeaderView: UIView{
         self.addSubview(profileImageView)
         self.addSubview(informationView)
         
-        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, widthConstant: 75, heightConstant: 75)
+        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, widthConstant: 50, heightConstant: 50)
         informationView.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
                                    bottom: self.bottomAnchor, right: self.rightAnchor)
        

@@ -11,7 +11,7 @@ import UIKit
 class FeedCellFooterView: UIView{
     var likeTextView: UITextView = {
         var textView = UITextView()
-        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 11)])
         textView.attributedText = attributes
         textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 0);
         textView.isSelectable = false
@@ -21,7 +21,7 @@ class FeedCellFooterView: UIView{
     }()
     var commentTextView: UITextView = {
         var textView = UITextView()
-        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 11)])
         textView.attributedText = attributes
         textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 0);
         textView.isSelectable = false
@@ -31,7 +31,7 @@ class FeedCellFooterView: UIView{
     }()
     var shareTextView: UITextView = {
         var textView = UITextView()
-        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 11)])
         textView.attributedText = attributes
         textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 0);
         textView.isSelectable = false
@@ -103,7 +103,7 @@ class FeedCellFooterView: UIView{
                            widthConstant: 75, heightConstant: 60)
         
         optionsButton.anchor(top: informationBarBottom, bottom: self.bottomAnchor, right: self.rightAnchor)
-        //
+    
     }
     
     required init?(coder aDecoder: NSCoder) {

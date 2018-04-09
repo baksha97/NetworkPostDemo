@@ -8,6 +8,16 @@
 import UIKit
 
 extension UIView {
+    
+    func addSeparator(ofHeight height : CGFloat) {
+        let lineView = UIView()
+        lineView.backgroundColor = .red
+        self.addSubview(lineView)
+        let constraintString = "V:|-\(self.frame.size.height - height)-[v0(\(height))]|"
+        self.addConstraintsWithFormat("H:|[v0]|", views: lineView)
+        self.addConstraintsWithFormat(constraintString, views: lineView)
+    }
+    
     public func addConstraintsWithFormat(_ format: String, views: UIView...) {
         
         var viewsDictionary = [String: UIView]()

@@ -48,7 +48,7 @@ class NewsCellBodyView: UIView{
     }()
     var sourceTextView: UITextView = {
         var textView = UITextView()
-        let attributes = NSMutableAttributedString(string: "SOURCE", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        let attributes = NSMutableAttributedString(string: "Source: ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 10)])
         textView.attributedText = attributes
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.red
