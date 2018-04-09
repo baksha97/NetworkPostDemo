@@ -38,10 +38,11 @@ class PostCellBodyView: UIView{
     
     func removeTitle(){
        // self.titleView.removeFromSuperview()
-        mainImageView.anchor(top: self.topAnchor, left: self.leftAnchor,
-                             bottom: self.bottomAnchor, right: self.rightAnchor)
-        
         self.titleView.removeFromSuperview()
+        mainImageView.anchor(top: self.topAnchor,
+                             left: self.leftAnchor,
+                             bottom: self.bottomAnchor,
+                             right: self.rightAnchor)
     }
     
     override init(frame: CGRect) {

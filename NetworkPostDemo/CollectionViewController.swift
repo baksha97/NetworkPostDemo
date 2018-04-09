@@ -48,7 +48,8 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
                 
                 if item.imageUrl != nil{
-                    return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 700)
+                    // - - -imageview itself -padding for text
+                    return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 700 + 24)
                 }
                 return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12)
             case let item as RawNewsDetails:
@@ -70,7 +71,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         // #warning Incomplete implementation, return the number of items
         return data.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = data[indexPath.row]
         let postCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: postCellId, for: indexPath) as! PostFeedCollectionViewCell
@@ -93,8 +94,6 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             
             if let feedItemImageUrl = feedItem.imageUrl{
                 postCell.body.urlString = "\(postBaseUrl)\(feedItemImageUrl)"
-                //postCell.body.removeTitle()
-                //print("post image currently unsupported for \(feedItemImageUrl)")
             }
             postCell.backgroundColor = UIColor.white
             postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
@@ -106,12 +105,10 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             newsCell.header.informationView.text = "LYK"
             newsCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
             newsCell.body.titleView.text = feedItem.newsTitle
-            //newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
-            newsCell.body.urlString = feedItem.newsImageUrl
+            newsCell.body.urlString = feedItem.newsImageUrl.removingWhitespaces()
             newsCell.body.newsDescriptionView.text = feedItem.newsDescription
             newsCell.body.sourceTextView.text = "Source: \(feedItem.newsSource)"
             newsCell.body.poweredByView.text = feedItem.poweredBy
-            
             newsCell.backgroundColor = UIColor.white
             newsCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
             newsCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"

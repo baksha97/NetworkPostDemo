@@ -33,7 +33,7 @@ class FeedCellFooterView: UIView{
         var textView = UITextView()
         let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 11)])
         textView.attributedText = attributes
-        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 0, 0);
+        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 4, 0);
         textView.isSelectable = false
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -42,7 +42,7 @@ class FeedCellFooterView: UIView{
     
     var likeButton: UIButton = {
         var button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0)
+        button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
         //button.setTitle("Like", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
         button.setImage(#imageLiteral(resourceName: "likeButton") , for: UIControlState.normal)
@@ -50,15 +50,16 @@ class FeedCellFooterView: UIView{
     }()
     var commentButton: UIButton = {
         var button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0)
+        button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
         //button.setTitle("Comment", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
         button.setImage(#imageLiteral(resourceName: "commentButton") , for: UIControlState.normal)
+        button.layer.borderColor = UIColor.red.cgColor
         return button
     }()
     var shareButton: UIButton = {
         var button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0)
+        button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
         //button.setTitle("Share", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
         button.setImage(#imageLiteral(resourceName: "shareButton"), for: UIControlState.normal)
@@ -66,9 +67,10 @@ class FeedCellFooterView: UIView{
     }()
     var optionsButton: UIButton = {
         var button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 12, 12)
+        button.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 12)
         button.setTitle("...", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
+        //button.setImage(#imageLiteral(resourceName: "optionsButton"), for: UIControlState.normal)
         return button
     }()
     
@@ -85,24 +87,45 @@ class FeedCellFooterView: UIView{
         self.addSubview(optionsButton)
         
         let interactionBarTop = likeButton.topAnchor
-        likeTextView.anchor(top: self.topAnchor, left: self.leftAnchor,
-                            bottom: interactionBarTop, right: commentTextView.leftAnchor)
-        commentTextView.anchor(top: self.topAnchor, left: likeTextView.rightAnchor,
-                               bottom: interactionBarTop , right: shareTextView.leftAnchor)
-        shareTextView.anchor(top: self.topAnchor, left: commentTextView.rightAnchor,
-                             bottom: interactionBarTop)
+        likeTextView.anchor(top: self.topAnchor,
+                            left: self.leftAnchor,
+                            bottom: interactionBarTop,
+                            right: commentTextView.leftAnchor
+        )
+        commentTextView.anchor(top: self.topAnchor,
+                               left: likeTextView.rightAnchor,
+                               bottom: interactionBarTop,
+                               right: shareTextView.leftAnchor
+        )
+        shareTextView.anchor(top: self.topAnchor,
+                             left: commentTextView.rightAnchor,
+                             bottom: interactionBarTop
+        )
+        
         let informationBarBottom = likeTextView.bottomAnchor
-        likeButton.anchor(top: informationBarBottom, left: self.leftAnchor,
+        likeButton.anchor(top: informationBarBottom,
+                          left: self.leftAnchor,
                           //bottom: self.bottomAnchor,
                           right: commentButton.leftAnchor,
-                          //leftConstant: 10.0,
-                          widthConstant: 75, heightConstant: 60)
-        commentButton.anchor(top: informationBarBottom, left: likeButton.rightAnchor, bottom: self.bottomAnchor, right:
-            shareButton.leftAnchor, widthConstant: 75, heightConstant: 60)
-        shareButton.anchor(top: informationBarBottom, left: commentButton.rightAnchor, bottom: self.bottomAnchor,
-                           widthConstant: 75, heightConstant: 60)
+                          widthConstant: 48, heightConstant: 44
+        )
+        commentButton.anchor(top: informationBarBottom,
+                             left: likeButton.rightAnchor,
+                             //bottom: self.bottomAnchor,
+                             right:shareButton.leftAnchor,
+                             widthConstant: 48, heightConstant: 44
+        )
+        shareButton.anchor(top: informationBarBottom,
+                           left: commentButton.rightAnchor,
+                           //bottom: self.bottomAnchor,
+                           widthConstant: 48, heightConstant: 44
+        )
         
-        optionsButton.anchor(top: informationBarBottom, bottom: self.bottomAnchor, right: self.rightAnchor)
+        optionsButton.anchor(top: informationBarBottom,
+                             bottom: self.bottomAnchor,
+                             right: self.rightAnchor,
+                             widthConstant: 48, heightConstant: 44
+        )
     
     }
     

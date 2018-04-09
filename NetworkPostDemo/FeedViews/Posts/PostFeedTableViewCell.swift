@@ -19,10 +19,12 @@ class PostFeedTableViewCell: UITableViewCell{
         self.addSubview(body)
         self.addSubview(footer)
         header.anchor(top: self.topAnchor, left: self.leftAnchor, right: self.rightAnchor,
-                      topConstant: 12, leftConstant: 12)
-        //bottom: body.topAnchor, right: self.rightAnchor)
+                      topConstant: 12, leftConstant: 12
+        )
         body.anchor(top: header.bottomAnchor, left: self.leftAnchor, bottom: footer.topAnchor, right: self.rightAnchor)
-        footer.anchor(top: body.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor)
+        footer.anchor(top: body.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor,
+                      bottomConstant: 12
+        )
     }
     
     required init?(coder aDecoder: NSCoder) {
