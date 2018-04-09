@@ -39,7 +39,7 @@ class TableViewController: UITableViewController {
                 
                 postCell.body.titleView.text = feedItem.title
                 if let feedItemImageUrl = feedItem.imageUrl{
-                   // postCell.body.mainImageView.loadAsyncFrom(url: feedItemImageUrl, placeholder: nil)
+                    //postCell.body.urlString = feedItem.newsImageUrl
                     print("post image currently unsupported for \(feedItemImageUrl)")
                 }
                 postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
@@ -51,7 +51,8 @@ class TableViewController: UITableViewController {
                 newsCell.header.informationView.text = "LYK"
                 newsCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
                 newsCell.body.titleView.text = feedItem.newsTitle
-                newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
+                //newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
+                newsCell.body.urlString = feedItem.newsImageUrl
                 newsCell.body.newsDescriptionView.text = feedItem.newsDescription
                 newsCell.body.sourceTextView.text = "Source: \(feedItem.newsSource)"
                 newsCell.body.poweredByView.text = feedItem.poweredBy

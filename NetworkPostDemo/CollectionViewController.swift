@@ -14,6 +14,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
 
     var data = [Any]()
     
+    //TODO: UPDATE WITH TABLEVIEW CONFIGURATION 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.setCollectionViewLayout(UICollectionViewFlowLayout(), animated: true)
@@ -59,8 +60,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             return postCell
         case let feedItem as RawNewsDetails:
             newsCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
-            newsCell.header.informationView.text = " LYK"
-            
+            newsCell.header.informationView.text = "LYK"
             newsCell.body.titleView.text = feedItem.newsTitle
             newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
             newsCell.body.newsDescriptionView.text = feedItem.newsDescription
