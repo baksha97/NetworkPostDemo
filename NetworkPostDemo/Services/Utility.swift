@@ -15,7 +15,7 @@ class Utility{
         //yyyy-dd-MM HH:mm:ss: lyk format
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        //dateFormatter.locale = Locale(identifier: "en_US_POSIX") // TODO: CHANGE TO CONTEXT
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // TODO: CHANGE TO CONTEXT
         let date = dateFormatter.date(from:lykDateString)
     
         let calendar = Calendar.current

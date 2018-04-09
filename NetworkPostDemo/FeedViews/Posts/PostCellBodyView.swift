@@ -36,6 +36,10 @@ class PostCellBodyView: UIView{
         return imageView
     }()
     
+    func removeImageView(){
+        self.mainImageView.isHidden = true
+    }
+    
     func removeTitle(){
        // self.titleView.removeFromSuperview()
         self.titleView.removeFromSuperview()

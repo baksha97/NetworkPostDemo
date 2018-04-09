@@ -94,6 +94,8 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             
             if let feedItemImageUrl = feedItem.imageUrl{
                 postCell.body.urlString = "\(postBaseUrl)\(feedItemImageUrl)"
+            }else{
+                postCell.body.removeImageView()
             }
             postCell.backgroundColor = UIColor.white
             postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
