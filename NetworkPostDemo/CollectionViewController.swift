@@ -87,7 +87,8 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             postCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
             
             if feedItem.title == "" {
-                postCell.body.removeTitle()
+                // currently removing hyperlinks 0 for unkown reasons
+               // postCell.body.removeTitle()
             }else{
                 postCell.body.titleView.text = feedItem.title
             }
