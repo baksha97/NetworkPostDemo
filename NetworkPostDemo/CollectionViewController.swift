@@ -18,7 +18,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         let flowLayout = UICollectionViewFlowLayout()
-        //flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        flowLayout.minimumLineSpacing = 10;
         collectionView?.setCollectionViewLayout(flowLayout, animated: true)
         self.collectionView!.register(PostFeedCollectionViewCell.self, forCellWithReuseIdentifier: postCellId)
         self.collectionView!.register(NewsFeedCollectionViewCell.self, forCellWithReuseIdentifier: newsCellId)
@@ -29,20 +29,13 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
 
     // MARK: UICollectionViewDataSource
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(24, 0, 25, 0)
-    }
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: NSIndexPath){
-//        collectionView
-//    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 8
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let approxWidthOfTitle = view.frame.width - 4
+        let approxWidthOfTitle = view.frame.width //- 4
         let size = CGSize(width: approxWidthOfTitle, height: 1000)
         let titleAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)]
         let newDescriptionAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
@@ -51,13 +44,13 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             case let item as RawPostDetails:
                 let estimatedTitleFrame = NSString(string: item.title)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
-                return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150)
+                return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12)
             case let item as RawNewsDetails:
                 let estimatedTitleFrame = NSString(string: item.newsTitle)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
                 let estimatedDescriptionFrame = NSString(string: item.newsTitle)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: newDescriptionAttributes, context: nil)
-                return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + estimatedDescriptionFrame.height + 400)
+                return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + estimatedDescriptionFrame.height + 400 + 12)
             default:
                 return CGSize(width: view.bounds.width, height: 0)
         }
