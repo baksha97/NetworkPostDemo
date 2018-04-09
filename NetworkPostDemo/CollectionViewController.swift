@@ -10,6 +10,8 @@ import UIKit
 
 private let newsCellId = "NewsFeedCell"
 private let postCellId = "PostFeedCell"
+private let lykImageUrl = "http://52.90.18.119/lykjwt/uploads/lyk.png"
+private let postBaseUrl = "https://www.lykapp.com/lykjwt/uploads/images/"
 class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var data = [Any]()
@@ -44,13 +46,20 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             case let item as RawPostDetails:
                 let estimatedTitleFrame = NSString(string: item.title)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
+                
+                if item.imageUrl != nil{
+                    return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 700)
+                }
                 return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12)
             case let item as RawNewsDetails:
                 let estimatedTitleFrame = NSString(string: item.newsTitle)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
-                let estimatedDescriptionFrame = NSString(string: item.newsTitle)
-                    .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: newDescriptionAttributes, context: nil)
-                return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + estimatedDescriptionFrame.height + 400 + 12)
+                let estimatedDescriptionFrameHeight = NSString(string: item.newsTitle)
+                    .boundingRect(with: size, options: .usesLineFragmentOrigin,
+                                  attributes: newDescriptionAttributes, context: nil)
+                    .height + 12 //text container insets
+                return CGSize(width: view.bounds.width,
+                              height: estimatedTitleFrame.height + estimatedDescriptionFrameHeight + 475 + 12)
             default:
                 return CGSize(width: view.bounds.width, height: 0)
         }
@@ -72,14 +81,20 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             if let profileImageUrl = feedItem.createdBy.imageUrl{
                 postCell.header.profileImageView.loadAsyncFrom(url: profileImageUrl, placeholder: nil)
             }else{
-                postCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
+                postCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
             }
             postCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
             
-            postCell.body.titleView.text = feedItem.title
+            if feedItem.title == "" {
+                postCell.body.removeTitle()
+            }else{
+                postCell.body.titleView.text = feedItem.title
+            }
+            
             if let feedItemImageUrl = feedItem.imageUrl{
-                //postCell.body.urlString = feedItem.newsImageUrl
-                print("post image currently unsupported for \(feedItemImageUrl)")
+                postCell.body.urlString = "\(postBaseUrl)\(feedItemImageUrl)"
+                //postCell.body.removeTitle()
+                //print("post image currently unsupported for \(feedItemImageUrl)")
             }
             postCell.backgroundColor = UIColor.white
             postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
@@ -87,7 +102,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             postCell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
             return postCell
         case let feedItem as RawNewsDetails:
-            newsCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
+            newsCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
             newsCell.header.informationView.text = "LYK"
             newsCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
             newsCell.body.titleView.text = feedItem.newsTitle
