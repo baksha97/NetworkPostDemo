@@ -8,6 +8,10 @@
 
 import UIKit
 
+private let newsCellId = "NewsFeedCell"
+private let postCellId = "PostFeedCell"
+private let lykImageUrl = "http://52.90.18.119/lykjwt/uploads/lyk.png"
+private let postBaseUrl = "https://www.lykapp.com/lykjwt/uploads/images/"
 class TableViewController: UITableViewController {
     
     var data = [Any]()
@@ -27,42 +31,18 @@ class TableViewController: UITableViewController {
         let item = data[indexPath.row]
         let newsCell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedTableViewCell
         let postCell = self.tableView.dequeueReusableCell(withIdentifier: "PostFeedCell") as! PostFeedTableViewCell
+        
         switch item {
-            case let feedItem as RawPostDetails:
-                postCell.header.informationView.text = feedItem.createdBy.firstName
-                if let profileImageUrl = feedItem.createdBy.imageUrl{
-                    postCell.header.profileImageView.loadAsyncFrom(url: profileImageUrl, placeholder: nil)
-                }else{
-                    postCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
-                }
-                postCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
-                
-                postCell.body.titleView.text = feedItem.title
-                if let feedItemImageUrl = feedItem.imageUrl{
-                    //postCell.body.urlString = feedItem.newsImageUrl
-                    print("post image currently unsupported for \(feedItemImageUrl)")
-                }
-                postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
-                postCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
-                postCell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
-                return postCell
-            case let feedItem as RawNewsDetails:
-                newsCell.header.profileImageView.loadAsyncFrom(url: "https://d1qb2nb5cznatu.cloudfront.net/startups/i/687472-5368eb389a35c22b4ca3ee91773d2a6f-medium_jpg.jpg?buster=1505195278", placeholder: nil)
-                newsCell.header.informationView.text = "LYK"
-                newsCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
-                newsCell.body.titleView.text = feedItem.newsTitle
-                //newsCell.body.mainImageView.loadAsyncFrom(url: feedItem.newsImageUrl, placeholder: #imageLiteral(resourceName: "placeholder"))
-                newsCell.body.urlString = feedItem.newsImageUrl
-                newsCell.body.newsDescriptionView.text = feedItem.newsDescription
-                newsCell.body.sourceTextView.text = "Source: \(feedItem.newsSource)"
-                newsCell.body.poweredByView.text = feedItem.poweredBy
-                newsCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
-                newsCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
-                newsCell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
-                return newsCell
-            default:
-                print("UNSUPPORTED")
+        case let feedItem as PostDetails:
+            PostObjectManager.shared.postCell(from: feedItem, in: postCell)
+            return postCell
+        case let feedItem as NewsDetails:
+            PostObjectManager.shared.newsCell(from: feedItem, in: newsCell)
+            return newsCell
+        default:
+            print("UNSUPPORTED")
         }
+        
         return UITableViewCell()
     }
    
@@ -76,6 +56,7 @@ class TableViewController: UITableViewController {
                 self.data = items
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.tableView.layoutIfNeeded()
                 }
             }
         })

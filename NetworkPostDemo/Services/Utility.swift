@@ -22,4 +22,5 @@ class Utility{
         let components = calendar.dateComponents([.year, .month, .day, .hour], from: date!)
         return calendar.date(from:components)!
     }
+    
 }

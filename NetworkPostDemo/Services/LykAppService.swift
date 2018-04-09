@@ -46,21 +46,21 @@ class LykAppService{
     }
     
     //TODO: add error
-    public func retrievePostAndNews(completion: @escaping([RawPostDetails]?, [RawNewsDetails]?) -> Void){
+    public func retrievePostAndNews(completion: @escaping([PostDetails]?, [NewsDetails]?) -> Void){
         runURLTask(completion: { (data) in
             
-            var postArray = [RawPostDetails]()
-            var newsArray = [RawNewsDetails]()
+            var postArray = [PostDetails]()
+            var newsArray = [NewsDetails]()
             
             if let data = data{
                 let json = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as! [String:Any]
                 let feed = self.responseFeed(from: json)
                 //HANDLE OBJECTS
                 
-                if let posts = self.query(feed: feed, for: .posts) as? [RawPostDetails]{
+                if let posts = self.query(feed: feed, for: .posts) as? [PostDetails]{
                     postArray = posts
                 }
-                if let news = self.query(feed: feed, for: .news) as? [RawNewsDetails]{
+                if let news = self.query(feed: feed, for: .news) as? [NewsDetails]{
                     newsArray = news
                 }
                 completion(postArray, newsArray)
@@ -105,7 +105,7 @@ class LykAppService{
                 case "post":
                     //print("\(type)")
                     do{
-                        let post = try self.decode(as: RawPostDetails.self, data: details as! [String : Any])
+                        let post = try self.decode(as: PostDetails.self, data: details as! [String : Any])
                         items.append(post)
                         //print(details)
                     } catch{
@@ -114,7 +114,7 @@ class LykAppService{
                 case "news":
                     //print("\(type)")
                     do{
-                        let object = try self.decode(as: RawNewsDetails.self, data: details as! [String : Any])
+                        let object = try self.decode(as: NewsDetails.self, data: details as! [String : Any])
                         items.append(object)
                         //print(details)
                     } catch{
@@ -132,7 +132,7 @@ class LykAppService{
         
         switch itemType {
         case .posts:
-            var items = [RawPostDetails]()
+            var items = [PostDetails]()
             for item in feed{
                 let post = item as! [String: Any]
                 let type = post["type"] as! String
@@ -140,7 +140,7 @@ class LykAppService{
                     if(type == "post"){
                         print("\(type)")
                         do{
-                            let post = try self.decode(as: RawPostDetails.self, data: details as! [String : Any])
+                            let post = try self.decode(as: PostDetails.self, data: details as! [String : Any])
                             items.append(post)
                             print(details)
                         } catch{
@@ -152,7 +152,7 @@ class LykAppService{
             return items
             
         case .news:
-            var items = [RawNewsDetails]()
+            var items = [NewsDetails]()
             for item in feed{
                 let post = item as! [String: Any]
                 let type = post["type"] as! String
@@ -160,7 +160,7 @@ class LykAppService{
                     if(type == "news"){
                         print("\(type)")
                         do{
-                            let object = try self.decode(as: RawNewsDetails.self, data: details as! [String : Any])
+                            let object = try self.decode(as: NewsDetails.self, data: details as! [String : Any])
                             items.append(object)
                          //   print(details)
                         } catch{

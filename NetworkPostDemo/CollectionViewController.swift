@@ -19,12 +19,12 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     //TODO: UPDATE WITH TABLEVIEW CONFIGURATION 
     override func viewDidLoad() {
         super.viewDidLoad()
+        retrieveData()
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 10;
         collectionView?.setCollectionViewLayout(flowLayout, animated: true)
         self.collectionView!.register(PostFeedCollectionViewCell.self, forCellWithReuseIdentifier: postCellId)
         self.collectionView!.register(NewsFeedCollectionViewCell.self, forCellWithReuseIdentifier: newsCellId)
-        retrieveData()
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         // Do any additional setup after loading the view.
@@ -43,7 +43,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         let newDescriptionAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
         let item = data[indexPath.row]
         switch item {
-            case let item as RawPostDetails:
+            case let item as PostDetails:
                 let estimatedTitleFrame = NSString(string: item.title)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
                 
@@ -52,7 +52,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                     return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 700 + 24)
                 }
                 return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12)
-            case let item as RawNewsDetails:
+            case let item as NewsDetails:
                 let estimatedTitleFrame = NSString(string: item.newsTitle)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
                 let estimatedDescriptionFrameHeight = NSString(string: item.newsTitle)
@@ -73,53 +73,23 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let item = data[indexPath.row]
+        
         let postCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: postCellId, for: indexPath) as! PostFeedCollectionViewCell
         let newsCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: newsCellId, for: indexPath) as! NewsFeedCollectionViewCell
+        
         switch item {
-        case let feedItem as RawPostDetails:
-            postCell.header.informationView.text = feedItem.createdBy.firstName
-            if let profileImageUrl = feedItem.createdBy.imageUrl{
-                postCell.header.profileImageView.loadAsyncFrom(url: profileImageUrl, placeholder: nil)
-            }else{
-                postCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
-            }
-            postCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
-            
-            if feedItem.title == "" {
-                // currently removing hyperlinks 0 for unkown reasons
-               // postCell.body.removeTitle()
-            }else{
-                postCell.body.titleView.text = feedItem.title
-            }
-            
-            if let feedItemImageUrl = feedItem.imageUrl{
-                postCell.body.urlString = "\(postBaseUrl)\(feedItemImageUrl)"
-            }else{
-                postCell.body.removeImageView()
-            }
-            postCell.backgroundColor = UIColor.white
-            postCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
-            postCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
-            postCell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
+        case let feedItem as PostDetails:
+            PostObjectManager.shared.postCell(from: feedItem, in: postCell)
             return postCell
-        case let feedItem as RawNewsDetails:
-            newsCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
-            newsCell.header.informationView.text = "LYK"
-            newsCell.header.informationView.text?.append("\n\(Utility.lykTime(from: feedItem.feedTime).timeAgoSince())")
-            newsCell.body.titleView.text = feedItem.newsTitle
-            newsCell.body.urlString = feedItem.newsImageUrl.removingWhitespaces()
-            newsCell.body.newsDescriptionView.text = feedItem.newsDescription
-            newsCell.body.sourceTextView.text = "Source: \(feedItem.newsSource)"
-            newsCell.body.poweredByView.text = feedItem.poweredBy
-            newsCell.backgroundColor = UIColor.white
-            newsCell.footer.likeTextView.text = "\(feedItem.likeCount) Likes"
-            newsCell.footer.commentTextView.text = "\(feedItem.commentCount) Comments"
-            newsCell.footer.shareTextView.text = "\(feedItem.shareCount) Shares"
+        case let feedItem as NewsDetails:
+            PostObjectManager.shared.newsCell(from: feedItem, in: newsCell)
             return newsCell
         default:
             print("UNSUPPORTED")
         }
+        
         return UICollectionViewCell()
     }
 
