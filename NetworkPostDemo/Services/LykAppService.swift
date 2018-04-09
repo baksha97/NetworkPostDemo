@@ -16,6 +16,8 @@ class LykAppService{
     var request: URLRequest    //Param: {"userId":"3196",  "offset": 0, "limit":25 }
     let postString: String
     
+    //perform networking actions - this would be replaced by the correct network servicing application of LykApp
+    //Or this may be used with a seperate initialization/configuration method based on the current user logged in
     private init(){
         url = URL(string: "https://api.lykapp.com/lykjwt/index.php?/relatedData/getHomeFeed")!
         request = URLRequest(url: url)
@@ -24,7 +26,7 @@ class LykAppService{
         request.httpBody = postString.data(using: .utf8)
     }
     
-    //TODO: add error
+    //gets all items into one [Any] array.
     public func retrieveAll(completion: @escaping([Any]?) -> Void){
         runURLTask(completion: { (data) in
             
@@ -45,7 +47,8 @@ class LykAppService{
         })
     }
     
-    //TODO: add error
+    //gets items as seperate arrays
+    //this would be useful for adding a "news" section and a "post" section.
     public func retrievePostAndNews(completion: @escaping([PostDetails]?, [NewsDetails]?) -> Void){
         runURLTask(completion: { (data) in
             
@@ -70,6 +73,7 @@ class LykAppService{
         })
     }
     
+    //performs url task
     private func runURLTask(completion: @escaping(Data?) -> Void){
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {  // check for fundamental networking error
@@ -89,11 +93,13 @@ class LykAppService{
         task.resume()
     }
     
+    //parse response
     private func responseFeed(from json: [String: Any]) -> NSArray {
         let response = json["response"] as! [String: Any]
         return (response["feeds"] as! NSArray)
     }
     
+    //seeks specific type based on enums
     private func query(feed: NSArray, for itemTypes: [LykItemType]) -> [Any]?{
         
         var items = [Any]()
@@ -127,7 +133,7 @@ class LykAppService{
         }
         return items
     }
-    
+    //seeks specific type based on multiple enums
     private func query(feed: NSArray, for itemType: LykItemType) -> [Any]?{
         
         switch itemType {
@@ -174,11 +180,25 @@ class LykAppService{
         
     }
     
+    //decodes json to swift objects
     private func decode<T: Decodable>(as objectType: T.Type, data: [String: Any]) throws -> T{
-        
         let documentData = try JSONSerialization.data(withJSONObject: data, options: [])
         let decodedObject = try JSONDecoder().decode(objectType, from: documentData)
-        
         return decodedObject
+    }
+    
+    
+    let dateFormatter = DateFormatter()
+    //converts like specific database time to contextual time
+    static func lykTime(from lykDateString: String) -> Date{
+        //yyyy-dd-MM HH:mm:ss: lyk format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // TODO: CHANGE TO CONTEXT
+        let date = dateFormatter.date(from:lykDateString)
+        
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date!)
+        return calendar.date(from:components)!
     }
 }

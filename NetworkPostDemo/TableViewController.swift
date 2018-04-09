@@ -8,34 +8,31 @@
 
 import UIKit
 
-private let newsCellId = "NewsFeedCell"
-private let postCellId = "PostFeedCell"
-private let lykImageUrl = "http://52.90.18.119/lykjwt/uploads/lyk.png"
-private let postBaseUrl = "https://www.lykapp.com/lykjwt/uploads/images/"
 class TableViewController: UITableViewController {
     
+    //set of items
     var data = [Any]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        retrieveData()
+        retrieveData() //gets data as soon as possible
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(PostFeedTableViewCell.self, forCellReuseIdentifier: "PostFeedCell")
-        self.tableView.register(NewsFeedTableViewCell.self, forCellReuseIdentifier: "NewsFeedCell")
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.register(PostFeedTableViewCell.self, forCellReuseIdentifier: PostObjectManager.shared.postCellId)
+        self.tableView.register(NewsFeedTableViewCell.self, forCellReuseIdentifier: PostObjectManager.shared.newsCellId)
+        self.tableView.rowHeight = UITableViewAutomaticDimension //allows cell to resize according || the imageviews do not autmatically resize - need to place .layoutSubviews() in an appropriate place to provide this when an image is loaded.
         self.tableView.estimatedRowHeight = 450.0
         self.tableView.insetsContentViewsToSafeArea = true
-        retrieveData()
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = data[indexPath.row]
-        let newsCell = self.tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedTableViewCell
-        let postCell = self.tableView.dequeueReusableCell(withIdentifier: "PostFeedCell") as! PostFeedTableViewCell
+        let postCell = self.tableView.dequeueReusableCell(withIdentifier: PostObjectManager.shared.postCellId) as! PostFeedTableViewCell
+        let newsCell = self.tableView.dequeueReusableCell(withIdentifier: PostObjectManager.shared.newsCellId) as! NewsFeedTableViewCell
+
         
         switch item {
         case let feedItem as PostDetails:

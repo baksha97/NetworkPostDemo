@@ -8,12 +8,9 @@
 
 import UIKit
 
-private let newsCellId = "NewsFeedCell"
-private let postCellId = "PostFeedCell"
-private let lykImageUrl = "http://52.90.18.119/lykjwt/uploads/lyk.png"
-private let postBaseUrl = "https://www.lykapp.com/lykjwt/uploads/images/"
 class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    //set of items
     var data = [Any]()
     
     //TODO: UPDATE WITH TABLEVIEW CONFIGURATION
@@ -27,8 +24,8 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         super.viewDidLoad()
         let flowLayout = UICollectionViewFlowLayout()
         collectionView?.setCollectionViewLayout(flowLayout, animated: true)
-        self.collectionView!.register(PostFeedCollectionViewCell.self, forCellWithReuseIdentifier: postCellId)
-        self.collectionView!.register(NewsFeedCollectionViewCell.self, forCellWithReuseIdentifier: newsCellId)
+        self.collectionView!.register(PostFeedCollectionViewCell.self, forCellWithReuseIdentifier: PostObjectManager.shared.postCellId)
+        self.collectionView!.register(NewsFeedCollectionViewCell.self, forCellWithReuseIdentifier: PostObjectManager.shared.newsCellId)
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         // Do any additional setup after loading the view.
@@ -36,25 +33,28 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
 
     // MARK: UICollectionViewDataSource
 
+    //seperator spacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
+    
+    //attempting to approximate the size of each individual cell of collection view since the automatic resizing is not working as intended
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let approxWidthOfTitle = view.frame.width //- 4
-        let size = CGSize(width: approxWidthOfTitle, height: 1000)
-        let titleAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)]
-        let newDescriptionAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
+        let approxWidthOfTitle = view.frame.width
+        let size = CGSize(width: approxWidthOfTitle, height: 1000) //high height to start
+        let titleAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)] // font of the title
+        let newDescriptionAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)] //font of the news description
         let item = data[indexPath.row]
         switch item {
             case let item as PostDetails:
                 let estimatedTitleFrame = NSString(string: item.title)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
-                
                 if item.imageUrl != nil{
-                    // - - -imageview itself -padding for text
+                    // title frame + buttons/other cell items + imageview itself + padding for text
                     return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 700 + 24)
                 }
+                // title frame + buttons/other cell items + padding for text
                 return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12)
             case let item as NewsDetails:
                 let estimatedTitleFrame = NSString(string: item.newsTitle)
@@ -64,6 +64,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                                   attributes: newDescriptionAttributes, context: nil)
                     .height + 12 //text container insets
                 return CGSize(width: view.bounds.width,
+                              // title frame + description height +  buttons/other cell items + padding for text
                               height: estimatedTitleFrame.height + estimatedDescriptionFrameHeight + 475 + 12)
             default:
                 return CGSize(width: view.bounds.width, height: 0)
@@ -72,7 +73,6 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return data.count
     }
     
@@ -80,8 +80,8 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         
         let item = data[indexPath.row]
         
-        let postCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: postCellId, for: indexPath) as! PostFeedCollectionViewCell
-        let newsCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: newsCellId, for: indexPath) as! NewsFeedCollectionViewCell
+        let postCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: PostObjectManager.shared.postCellId, for: indexPath) as! PostFeedCollectionViewCell
+        let newsCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: PostObjectManager.shared.newsCellId, for: indexPath) as! NewsFeedCollectionViewCell
         
         switch item {
         case let feedItem as PostDetails:
