@@ -51,11 +51,11 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                 let estimatedTitleFrame = NSString(string: item.title)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
                 if item.imageUrl != nil{
-                    // title frame + buttons/other cell items + imageview itself + padding for text
-                    return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 300 + 24)
+                    // title frame + buttons/other cell items + imageview itself + padding for text *1.08 for padding
+                    return CGSize(width: view.bounds.width, height: (estimatedTitleFrame.height + 150 + 12 + 300 + 24) * 1.08)
                 }
                 // title frame + buttons/other cell items + padding for text
-                return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12)
+                return CGSize(width: view.bounds.width, height: (estimatedTitleFrame.height + 150 + 12) * 1.08)
             case let item as NewsDetails:
                 let estimatedTitleFrame = NSString(string: item.newsTitle)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
