@@ -32,8 +32,9 @@ class PostObjectManager{
             postCell.header.informationView.text?.append("\n\(LykAppService.lykTime(from: postDetail.feedTime).timeAgoSince())")
             
             if postDetail.title == "" {
-                // currently removing hyperlinks 0 for unkown reasons
-                // postCell.body.removeTitle()
+                // currently in the Lyk URL data pull, the "SHARED" post types are recieved as post and is not automatically differientiated with
+                // the response of { type = ___ [currently set as post] }
+                 postCell.body.removeTitle()
             }else{
                 postCell.body.titleView.text = postDetail.title
             }
@@ -58,8 +59,9 @@ class PostObjectManager{
             postCell.header.informationView.text?.append("\n\(LykAppService.lykTime(from: postDetail.feedTime).timeAgoSince())")
             
             if postDetail.title == "" {
-                // currently removing hyperlinks - for unkown reasons
-                // postCell.body.removeTitle()
+                // currently in the Lyk URL data pull, the "SHARED" post types are recieved as post and is not automatically differientiated with
+                // the response of { type = ___ [currently set as post] }
+                postCell.body.removeTitle()
             }else{
                 postCell.body.titleView.text = postDetail.title
             }

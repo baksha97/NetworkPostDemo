@@ -52,7 +52,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
                 if item.imageUrl != nil{
                     // title frame + buttons/other cell items + imageview itself + padding for text
-                    return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 700 + 24)
+                    return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12 + 300 + 24)
                 }
                 // title frame + buttons/other cell items + padding for text
                 return CGSize(width: view.bounds.width, height: estimatedTitleFrame.height + 150 + 12)

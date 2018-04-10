@@ -15,6 +15,7 @@ class NewsCellBodyView: UIView{
         didSet {
             if let url = urlString {
                 mainImageView.loadAsyncFrom(url: url, placeholder: nil)
+                self.setNeedsLayout()
             }
         }
     }
@@ -51,7 +52,8 @@ class NewsCellBodyView: UIView{
         let attributes = NSMutableAttributedString(string: "Source: ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 10)])
         textView.attributedText = attributes
         textView.textColor = UIColor.white
-        textView.backgroundColor = UIColor.red
+        //    R: 255 G: 83 B: 73
+        textView.backgroundColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0)//lyk app color
         textView.textContainerInset = UIEdgeInsetsMake(8, 12, 8, 12)
         textView.isSelectable = false
         textView.isEditable = false

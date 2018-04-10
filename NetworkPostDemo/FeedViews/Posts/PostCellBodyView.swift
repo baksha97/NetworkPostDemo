@@ -30,7 +30,8 @@ class PostCellBodyView: UIView{
     }()
     var mainImageView: AyncImageView = {
         var imageView = AyncImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit // collectionview has an easier time displaying the correct cell height if we have a somewhat consistent size
+        imageView.backgroundColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 0.2)// lyk app color //UIColor(white: 0.98, alpha: 1)
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
         return imageView
