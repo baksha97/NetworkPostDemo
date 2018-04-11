@@ -99,7 +99,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     func retrieveData(){
         LykAppService.shared.retrieveAll(completion: { (items) in
             if let items = items{
-                self.data = items
+                self.data = items.reversed()
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
                 }
