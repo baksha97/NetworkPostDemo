@@ -10,6 +10,8 @@ import UIKit
 
 class NewsCellBodyView: UIView{
     
+    var height: CGFloat?
+    var width: CGFloat?
     
     var urlString: String? {
         didSet {
@@ -82,8 +84,17 @@ class NewsCellBodyView: UIView{
         self.addSubview(poweredByView)
         titleView.anchor(top: self.topAnchor, left: self.leftAnchor,
                          bottom: mainImageView.topAnchor, right: self.rightAnchor)
-        mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
+        
+        if let width = width, let height = height{ //height and width bounds are set
+            mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
+                                 bottom: newsDescriptionView.topAnchor, right: self.rightAnchor,
+                                 widthConstant: width, heightConstant: height
+            )
+        }else{ //not set - default - prevent compiler error because the values are not initialized on creation of a body view
+            mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
                              bottom: newsDescriptionView.topAnchor, right: self.rightAnchor)
+        }
+        
         mainImageView.addSubview(sourceTextView)
         sourceTextView.anchor(bottom: mainImageView.bottomAnchor, right: mainImageView.rightAnchor)
         newsDescriptionView.anchor(top: mainImageView.bottomAnchor, left: self.leftAnchor,

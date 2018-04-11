@@ -106,6 +106,20 @@ class PostObjectManager{
             newsCell.header.headerInformationView.text?.append("\n\(LykAppService.lykTime(from: newsDetail.feedTime).timeAgoSince())")
             newsCell.body.titleView.text = newsDetail.newsTitle
             newsCell.body.urlString = newsDetail.newsImageUrl.replaceUrlSpaces()
+            
+            
+            
+            newsCell.body.height = CGFloat((newsDetail.h as NSString).doubleValue)
+            newsCell.body.width = CGFloat((newsDetail.w as NSString).doubleValue)
+//            guard let newsCell.body.height = NumberFormatter().number(from: newsDetail.h) else {
+//
+//                return
+//            }
+//            guard let newsCell.body.width = NumberFormatter().number(from: newsDetail.w) else {
+//                return }
+//            newsCell.body.mainImageView.frame.height = newsDetail.h
+//            newsCell.body.mainImageView.frame.width = newsDetail.w
+            
             newsCell.body.newsDescriptionView.text = newsDetail.newsDescription
             newsCell.body.sourceTextView.text = "Source: \(newsDetail.newsSource)"
             newsCell.body.poweredByView.text = newsDetail.poweredBy

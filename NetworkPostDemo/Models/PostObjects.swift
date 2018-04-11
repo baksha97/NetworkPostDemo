@@ -36,6 +36,8 @@ class PostDetails: Codable{
 }
 
 class NewsDetails: Codable{
+    var h: String
+    var w: String
     var commentCount: String
     var feedTime: String
     var likeCount: String
