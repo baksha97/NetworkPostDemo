@@ -8,6 +8,8 @@
 
 import UIKit
 
+//This will be used to keep our Views seperate and cleaner than doubling back and forth
+//May not be of use once a specific Controller is decided upon.
 class PostObjectManager{
     private init(){}
     static let shared = PostObjectManager()
@@ -16,20 +18,21 @@ class PostObjectManager{
     let newsCellId = "NewsFeedCell"
     let postCellId = "PostFeedCell"
     //MARK: Static URLS
-    let lykImageUrl = "http://52.90.18.119/lykjwt/uploads/lyk.png"
+    let lykImageUrl = "https://cdn.lykapp.com/assets/images/logo.png"
     let postBaseUrl = "https://www.lykapp.com/lykjwt/uploads/images/"
     
     //modifies post cell as either a collectionview or a tableview
+    //i have attempted to create ONE PostView and configure that - then apply to both cells, but it will not work as intended... I have blank cells.
     func postCell(from postDetail: PostDetails, in postCell: Any){
         switch postCell {
         case let postCell as PostFeedTableViewCell:
-            postCell.header.informationView.text = postDetail.createdBy.firstName
+            postCell.header.headerInformationView.text = postDetail.createdBy.firstName
             if let profileImageUrl = postDetail.createdBy.imageUrl{
                 postCell.header.profileImageView.loadAsyncFrom(url: profileImageUrl, placeholder: nil)
             }else{
                 postCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
             }
-            postCell.header.informationView.text?.append("\n\(LykAppService.lykTime(from: postDetail.feedTime).timeAgoSince())")
+            postCell.header.headerInformationView.text?.append("\n\(LykAppService.lykTime(from: postDetail.feedTime).timeAgoSince())")
             
             if postDetail.title == "" {
                 // currently in the Lyk URL data pull, the "SHARED" post types are recieved as post and is not automatically differientiated with
@@ -50,13 +53,13 @@ class PostObjectManager{
             postCell.footer.shareTextView.text = "\(postDetail.shareCount) Shares"
             
         case let postCell as PostFeedCollectionViewCell:
-            postCell.header.informationView.text = postDetail.createdBy.firstName
+            postCell.header.headerInformationView.text = postDetail.createdBy.firstName
             if let profileImageUrl = postDetail.createdBy.imageUrl{
                 postCell.header.profileImageView.loadAsyncFrom(url: profileImageUrl, placeholder: nil)
             }else{
                 postCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
             }
-            postCell.header.informationView.text?.append("\n\(LykAppService.lykTime(from: postDetail.feedTime).timeAgoSince())")
+            postCell.header.headerInformationView.text?.append("\n\(LykAppService.lykTime(from: postDetail.feedTime).timeAgoSince())")
             
             if postDetail.title == "" {
                 // currently in the Lyk URL data pull, the "SHARED" post types are recieved as post and is not automatically differientiated with
@@ -76,7 +79,7 @@ class PostObjectManager{
             postCell.footer.commentTextView.text = "\(postDetail.commentCount) Comments"
             postCell.footer.shareTextView.text = "\(postDetail.shareCount) Shares"
         default:
-            print()
+            print("Cell type unsupported")
         }
     }
     
@@ -86,10 +89,10 @@ class PostObjectManager{
         switch newsCell {
         case let newsCell as NewsFeedTableViewCell:
             newsCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
-            newsCell.header.informationView.text = "LYK"
-            newsCell.header.informationView.text?.append("\n\(LykAppService.lykTime(from: newsDetail.feedTime).timeAgoSince())")
+            newsCell.header.headerInformationView.text = "LYK"
+            newsCell.header.headerInformationView.text?.append("\n\(LykAppService.lykTime(from: newsDetail.feedTime).timeAgoSince())")
             newsCell.body.titleView.text = newsDetail.newsTitle
-            newsCell.body.urlString = newsDetail.newsImageUrl.removingWhitespaces()
+            newsCell.body.urlString = newsDetail.newsImageUrl.replaceUrlSpaces()
             newsCell.body.newsDescriptionView.text = newsDetail.newsDescription
             newsCell.body.sourceTextView.text = "Source: \(newsDetail.newsSource)"
             newsCell.body.poweredByView.text = newsDetail.poweredBy
@@ -99,10 +102,10 @@ class PostObjectManager{
             newsCell.footer.shareTextView.text = "\(newsDetail.shareCount) Shares"
         case let newsCell as NewsFeedCollectionViewCell:
             newsCell.header.profileImageView.loadAsyncFrom(url: lykImageUrl, placeholder: nil)
-            newsCell.header.informationView.text = "LYK"
-            newsCell.header.informationView.text?.append("\n\(LykAppService.lykTime(from: newsDetail.feedTime).timeAgoSince())")
+            newsCell.header.headerInformationView.text = "LYK"
+            newsCell.header.headerInformationView.text?.append("\n\(LykAppService.lykTime(from: newsDetail.feedTime).timeAgoSince())")
             newsCell.body.titleView.text = newsDetail.newsTitle
-            newsCell.body.urlString = newsDetail.newsImageUrl.removingWhitespaces()
+            newsCell.body.urlString = newsDetail.newsImageUrl.replaceUrlSpaces()
             newsCell.body.newsDescriptionView.text = newsDetail.newsDescription
             newsCell.body.sourceTextView.text = "Source: \(newsDetail.newsSource)"
             newsCell.body.poweredByView.text = newsDetail.poweredBy
@@ -111,7 +114,7 @@ class PostObjectManager{
             newsCell.footer.commentTextView.text = "\(newsDetail.commentCount) Comments"
             newsCell.footer.shareTextView.text = "\(newsDetail.shareCount) Shares"
         default:
-            print()
+            print("Cell type unsupported")
         }
     }
     

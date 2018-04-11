@@ -10,6 +10,11 @@ import UIKit
 
 //footer to be used for all feed cells
 class FeedCellFooterView: UIView{
+    
+    private let buttonWidth: CGFloat = 54.0
+    private let buttonHeight: CGFloat = 49.5
+    
+    //plausibly better to create a subclass with the consistent constant attributes
     var likeTextView: UITextView = {
         var textView = UITextView()
         let attributes = NSMutableAttributedString(string: " ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 11)])
@@ -40,13 +45,13 @@ class FeedCellFooterView: UIView{
         textView.isScrollEnabled = false
         return textView
     }()
-    
+    //plausibly better to create a subclass with the consistent constant attributes
     var likeButton: UIButton = {
         var button = UIButton()
         button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
         //button.setTitle("Like", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "likeButton").imageWithInsets(insetDimen: 40) , for: UIControlState.normal)
+        button.setImage(#imageLiteral(resourceName: "likeButton").imageWithInsets(insetDimen: 40) , for: UIControlState.normal) //insets allow room within the border itself
         button.imageView?.layer.borderColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0).cgColor
         button.imageView?.layer.borderWidth = 2.0
         button.imageView?.layer.cornerRadius = 5
@@ -58,7 +63,7 @@ class FeedCellFooterView: UIView{
         button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
         //button.setTitle("Comment", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "commentButton").imageWithInsets(insetDimen: 40), for: UIControlState.normal)
+        button.setImage(#imageLiteral(resourceName: "commentButton").imageWithInsets(insetDimen: 40), for: UIControlState.normal) //insets allow room within the border itself
         button.imageView?.layer.borderColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0).cgColor
         button.imageView?.layer.borderWidth = 2.0
         button.imageView?.layer.cornerRadius = 5
@@ -70,7 +75,7 @@ class FeedCellFooterView: UIView{
         button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
         //button.setTitle("Share", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "shareButton").imageWithInsets(insetDimen: 40), for: UIControlState.normal)
+        button.setImage(#imageLiteral(resourceName: "shareButton").imageWithInsets(insetDimen: 40), for: UIControlState.normal) //insets allow room within the border itself
         button.imageView?.layer.borderColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0).cgColor
         button.imageView?.layer.borderWidth = 2.0
         button.imageView?.layer.cornerRadius = 5
@@ -114,32 +119,29 @@ class FeedCellFooterView: UIView{
                              bottom: interactionBarTop
         )
         
-        let width: CGFloat = 54.0
-        let height: CGFloat = 49.5
-        
         let informationBarBottom = likeTextView.bottomAnchor
         likeButton.anchor(top: informationBarBottom,
                           left: self.leftAnchor,
                           //bottom: self.bottomAnchor,
                           right: commentButton.leftAnchor,
-                          widthConstant: width, heightConstant: height
+                          widthConstant: buttonWidth, heightConstant: buttonHeight
         )
         commentButton.anchor(top: informationBarBottom,
                              left: likeButton.rightAnchor,
                              //bottom: self.bottomAnchor,
                              right:shareButton.leftAnchor,
-                             widthConstant: width, heightConstant: height
+                             widthConstant: buttonWidth, heightConstant: buttonHeight
         )
         shareButton.anchor(top: informationBarBottom,
                            left: commentButton.rightAnchor,
                            //bottom: self.bottomAnchor,
-                           widthConstant: width, heightConstant: height
+                           widthConstant: buttonWidth, heightConstant: buttonHeight
         )
         
         optionsButton.anchor(top: informationBarBottom,
                              bottom: self.bottomAnchor,
                              right: self.rightAnchor,
-                             widthConstant: width, heightConstant: height
+                             widthConstant: buttonWidth, heightConstant: buttonHeight
         )
     
     }

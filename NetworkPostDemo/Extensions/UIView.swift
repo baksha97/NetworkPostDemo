@@ -1,7 +1,6 @@
 //
 //  UIView.swift
 //  NetworkPostDemo
-//  Brian Voong Tutorial Suggested Extensions
 //
 //
 
@@ -10,6 +9,8 @@ import UIKit
 
 extension UIView {
     
+    //may be used to create a seperator line in a tableview.
+    //unable to currently use because post and news views are not one view- therefore adding these constraints causes errors. 
     func addSeparator(ofHeight height : CGFloat) {
         let lineView = UIView()
         lineView.backgroundColor = .red
@@ -18,6 +19,8 @@ extension UIView {
         self.addConstraintsWithFormat("H:|[v0]|", views: lineView)
         self.addConstraintsWithFormat(constraintString, views: lineView)
     }
+    
+    //  Brian Voong Tutorial Suggested Extensions
     
     public func addConstraintsWithFormat(_ format: String, views: UIView...) {
         

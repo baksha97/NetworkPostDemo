@@ -14,7 +14,7 @@ class FeedCellHeaderView: UIView{
         var imageView = RoundedImageView()
         return imageView
     }()
-    var informationView: UITextView = {
+    var headerInformationView: UITextView = {
         var textView = UITextView()
         let attributes = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12)]
         textView.attributedText = NSAttributedString(string: " ", attributes: attributes)
@@ -28,10 +28,10 @@ class FeedCellHeaderView: UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(profileImageView)
-        self.addSubview(informationView)
+        self.addSubview(headerInformationView)
         
         profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, widthConstant: 50, heightConstant: 50)
-        informationView.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
+        headerInformationView.anchor(top: self.topAnchor, left: profileImageView.rightAnchor,
                                    bottom: self.bottomAnchor, right: self.rightAnchor)
        
     }

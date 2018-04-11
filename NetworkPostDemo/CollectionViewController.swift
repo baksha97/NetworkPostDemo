@@ -13,8 +13,6 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     //set of items
     var data = [Any]()
     
-    //TODO: UPDATE WITH TABLEVIEW CONFIGURATION
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         retrieveData()
@@ -51,7 +49,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                 let estimatedTitleFrame = NSString(string: item.title)
                     .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleAttributes, context: nil)
                 if item.imageUrl != nil{
-                    // title frame + buttons/other cell items + imageview itself + padding for text *1.08 for padding
+                    // title frame + buttons/other cell items + imageview itself + padding for text * 1.08 for extremely long text padding
                     return CGSize(width: view.bounds.width, height: (estimatedTitleFrame.height + 150 + 12 + 300 + 24) * 1.08)
                 }
                 // title frame + buttons/other cell items + padding for text
@@ -64,7 +62,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                                   attributes: newDescriptionAttributes, context: nil)
                     .height + 12 //text container insets
                 return CGSize(width: view.bounds.width,
-                              // title frame + description height +  buttons/other cell items + padding for text
+                              // title frame + description height +  buttons/other cell items + padding for text 1.08 + for extremely long text padding
                               height: estimatedTitleFrame.height + estimatedDescriptionFrameHeight + 475 + 12)
             default:
                 return CGSize(width: view.bounds.width, height: 0)
@@ -84,11 +82,11 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         let newsCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: PostObjectManager.shared.newsCellId, for: indexPath) as! NewsFeedCollectionViewCell
         
         switch item {
-        case let feedItem as PostDetails:
-            PostObjectManager.shared.postCell(from: feedItem, in: postCell)
+        case let item as PostDetails:
+            PostObjectManager.shared.postCell(from: item, in: postCell)
             return postCell
-        case let feedItem as NewsDetails:
-            PostObjectManager.shared.newsCell(from: feedItem, in: newsCell)
+        case let item as NewsDetails:
+            PostObjectManager.shared.newsCell(from: item, in: newsCell)
             return newsCell
         default:
             print("UNSUPPORTED")

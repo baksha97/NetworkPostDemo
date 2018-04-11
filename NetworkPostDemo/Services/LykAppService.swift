@@ -12,9 +12,9 @@ class LykAppService{
     static let shared = LykAppService()
     
     
-    var url: URL
-    var request: URLRequest    //Param: {"userId":"3196",  "offset": 0, "limit":25 }
-    let postString: String
+    private var url: URL
+    private var request: URLRequest    //Param: {"userId":"3196",  "offset": 0, "limit":25 }
+    private let postString: String
     
     //perform networking actions - this would be replaced by the correct network servicing application of LykApp
     //Or this may be used with a seperate initialization/configuration method based on the current user logged in
@@ -101,7 +101,6 @@ class LykAppService{
     
     //seeks specific type based on enums
     private func query(feed: NSArray, for itemTypes: [LykItemType]) -> [Any]?{
-        
         var items = [Any]()
         for item in feed{
             let post = item as! [String: Any]
@@ -113,7 +112,7 @@ class LykAppService{
                     do{
                         let post = try self.decode(as: PostDetails.self, data: details as! [String : Any])
                         items.append(post)
-                        //print(details)
+                        print(details)
                     } catch{
                         print(error)
                 }
@@ -122,7 +121,7 @@ class LykAppService{
                     do{
                         let object = try self.decode(as: NewsDetails.self, data: details as! [String : Any])
                         items.append(object)
-                        //print(details)
+                        print(details)
                     } catch{
                         print(error)
                     }
@@ -133,7 +132,7 @@ class LykAppService{
         }
         return items
     }
-    //seeks specific type based on multiple enums
+    //seeks specific type based on single enums
     private func query(feed: NSArray, for itemType: LykItemType) -> [Any]?{
         
         switch itemType {
@@ -177,7 +176,6 @@ class LykAppService{
             }
             return items
         }
-        
     }
     
     //decodes json to swift objects
@@ -194,7 +192,7 @@ class LykAppService{
         //yyyy-dd-MM HH:mm:ss: lyk format
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // TODO: CHANGE TO CONTEXT
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // TODO: CHANGE TO CONTEXT OF TIMEZONE IN DATABASE 
         let date = dateFormatter.date(from:lykDateString)
         
         let calendar = Calendar.current
