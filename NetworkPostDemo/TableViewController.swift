@@ -13,9 +13,10 @@ class TableViewController: UITableViewController {
     //set of items
     var data = [Any]()
     
+    //gets data as soon as possible
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        retrieveData() //gets data as soon as possible
+        retrieveData()
     }
 
     override func viewDidLoad() {

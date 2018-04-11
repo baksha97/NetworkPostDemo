@@ -62,7 +62,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
                                   attributes: newDescriptionAttributes, context: nil)
                     .height + 12 //text container insets
                 return CGSize(width: view.bounds.width,
-                              // title frame + description height +  buttons/other cell items + padding for text 1.08 + for extremely long text padding
+                              // title frame + description height +  buttons/other cell items + padding for text 
                               height: estimatedTitleFrame.height + estimatedDescriptionFrameHeight + 475 + 12)
             default:
                 return CGSize(width: view.bounds.width, height: 0)
