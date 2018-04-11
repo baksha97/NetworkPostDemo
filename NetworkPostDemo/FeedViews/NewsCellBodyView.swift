@@ -10,8 +10,16 @@ import UIKit
 
 class NewsCellBodyView: UIView{
     
-    var height: CGFloat?
-    var width: CGFloat?
+    var height: CGFloat? {
+        didSet {
+          //  self.anchorImageView()  --- BUG, CURRENTLY NOT WORKING AS INTENDED
+        }
+    }
+    var width: CGFloat? {
+        didSet {
+           // self.anchorImageView() --- BUG, CURRENTLY NOT WORKING AS INTENDED
+        }
+    }
     
     var urlString: String? {
         didSet {
@@ -85,16 +93,7 @@ class NewsCellBodyView: UIView{
         titleView.anchor(top: self.topAnchor, left: self.leftAnchor,
                          bottom: mainImageView.topAnchor, right: self.rightAnchor)
         
-        if let width = width, let height = height{ //height and width bounds are set
-            mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
-                                 bottom: newsDescriptionView.topAnchor, right: self.rightAnchor,
-                                 widthConstant: width, heightConstant: height
-            )
-        }else{ //not set - default - prevent compiler error because the values are not initialized on creation of a body view
-            //TODO: FIX BOUNDS NOT BEING USED 4.10.18 - 11PM
-            mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
-                             bottom: newsDescriptionView.topAnchor, right: self.rightAnchor)
-        }
+        self.anchorImageView()
         
         mainImageView.addSubview(sourceTextView)
         sourceTextView.anchor(bottom: mainImageView.bottomAnchor, right: mainImageView.rightAnchor)
@@ -105,6 +104,22 @@ class NewsCellBodyView: UIView{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func anchorImageView(){
+        if let width = width, let height = height{ //height and width bounds are set
+            mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
+                                 bottom: newsDescriptionView.topAnchor, right: self.rightAnchor,
+                                 widthConstant: width, heightConstant: height
+            )
+            print("Height and Width bounds are now being used")
+        }else{ //not set - default - prevent compiler error because the values are not initialized on creation of a body view
+            //TODO: FIX BOUNDS NOT BEING USED 4.10.18 - 11PM
+            mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
+                                 bottom: newsDescriptionView.topAnchor, right: self.rightAnchor
+            )
+            print("Height and Width bounds are NOT being used")
+        }
     }
     
 }
