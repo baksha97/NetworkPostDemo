@@ -24,7 +24,7 @@
 		2E328851207698F000A6D66B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E32884F207698F000A6D66B /* Main.storyboard */; };
 		2E328853207698F000A6D66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E328852207698F000A6D66B /* Assets.xcassets */; };
 		2E328856207698F000A6D66B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E328854207698F000A6D66B /* LaunchScreen.storyboard */; };
-		2E62D71A207C275800EBD59A /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62D719207C275800EBD59A /* PostManager.swift */; };
+		2E62D71A207C275800EBD59A /* PostObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62D719207C275800EBD59A /* PostObjectManager.swift */; };
 		2E6AD545207AC0F40097B438 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AD544207AC0F40097B438 /* CollectionViewController.swift */; };
 		2E6AD547207AC1BB0097B438 /* PostFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AD546207AC1BB0097B438 /* PostFeedCollectionViewCell.swift */; };
 		2E6AD549207AC7E30097B438 /* NewsFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AD548207AC7E30097B438 /* NewsFeedCollectionViewCell.swift */; };
@@ -56,7 +56,7 @@
 		2E328852207698F000A6D66B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E328855207698F000A6D66B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E328857207698F000A6D66B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E62D719207C275800EBD59A /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
+		2E62D719207C275800EBD59A /* PostObjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostObjectManager.swift; sourceTree = "<group>"; };
 		2E6AD544207AC0F40097B438 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		2E6AD546207AC1BB0097B438 /* PostFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E6AD548207AC7E30097B438 /* NewsFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				2EDC5D632076F2D0007817EA /* LykAppService.swift */,
-				2E62D719207C275800EBD59A /* PostManager.swift */,
+				2E62D719207C275800EBD59A /* PostObjectManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -264,7 +264,7 @@
 				2E109FB12079958A00C0E49F /* FeedCellHeaderView.swift in Sources */,
 				2EDC5D642076F2D0007817EA /* LykAppService.swift in Sources */,
 				2E306DB4207D8EC3002A4F6F /* String.swift in Sources */,
-				2E62D71A207C275800EBD59A /* PostManager.swift in Sources */,
+				2E62D71A207C275800EBD59A /* PostObjectManager.swift in Sources */,
 				2E32884E207698F000A6D66B /* TableViewController.swift in Sources */,
 				2E306DB6207DA7EC002A4F6F /* RoundedImageView.swift in Sources */,
 				2E6AD545207AC0F40097B438 /* CollectionViewController.swift in Sources */,
