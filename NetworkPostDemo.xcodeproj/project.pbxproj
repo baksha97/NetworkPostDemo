@@ -157,9 +157,9 @@
 		2EDC5D68207804E1007817EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2E144746207A996300E19CEE /* AyncImageView.swift */,
 				2EDC5D6520770CA5007817EA /* LykUser.swift */,
 				2EDC5D612076F2A8007817EA /* PostObjects.swift */,
+				2E144746207A996300E19CEE /* AyncImageView.swift */,
 				2E306DB5207DA7EC002A4F6F /* RoundedImageView.swift */,
 			);
 			path = Models;

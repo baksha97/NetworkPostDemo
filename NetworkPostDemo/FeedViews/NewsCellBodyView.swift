@@ -91,6 +91,7 @@ class NewsCellBodyView: UIView{
                                  widthConstant: width, heightConstant: height
             )
         }else{ //not set - default - prevent compiler error because the values are not initialized on creation of a body view
+            //TODO: FIX BOUNDS NOT BEING USED 4.10.18 - 11PM
             mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
                              bottom: newsDescriptionView.topAnchor, right: self.rightAnchor)
         }
