@@ -13,7 +13,9 @@ class PostCellBodyView: UIView{
     var urlString: String? {
         didSet {
             if let url = urlString {
-                mainImageView.loadAsyncFrom(url: url, placeholder: nil)
+                mainImageView.loadAsyncFrom(url: url, placeholder: nil, completion: { (completed) in
+                    self.layoutSubviews()
+                })
             }
         }
     }

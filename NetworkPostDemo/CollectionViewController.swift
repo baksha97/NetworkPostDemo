@@ -81,6 +81,12 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         let postCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: PostObjectManager.shared.postCellId, for: indexPath) as! PostFeedCollectionViewCell
         let newsCell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: PostObjectManager.shared.newsCellId, for: indexPath) as! NewsFeedCollectionViewCell
         
+        postCell.setNeedsLayout()
+        postCell.layoutIfNeeded()
+        
+        newsCell.setNeedsLayout()
+        newsCell.layoutIfNeeded()
+        
         switch item {
         case let item as PostDetails:
             PostObjectManager.shared.postCell(from: item, in: postCell)

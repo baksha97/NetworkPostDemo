@@ -24,8 +24,10 @@ class NewsCellBodyView: UIView{
     var urlString: String? {
         didSet {
             if let url = urlString {
-                mainImageView.loadAsyncFrom(url: url, placeholder: nil)
-                self.setNeedsLayout()
+                mainImageView.loadAsyncFrom(url: url, placeholder: nil, completion: { (completed) in
+                    self.setNeedsLayout()
+                    self.layoutSubviews()
+                })
             }
         }
     }
@@ -112,13 +114,13 @@ class NewsCellBodyView: UIView{
                                  bottom: newsDescriptionView.topAnchor, right: self.rightAnchor,
                                  widthConstant: width, heightConstant: height
             )
-            print("Height and Width bounds are now being used")
+           // print("Height and Width bounds are now being used")
         }else{ //not set - default - prevent compiler error because the values are not initialized on creation of a body view
             //TODO: FIX BOUNDS NOT BEING USED 4.10.18 - 11PM
             mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
                                  bottom: newsDescriptionView.topAnchor, right: self.rightAnchor
             )
-            print("Height and Width bounds are NOT being used")
+           // print("Height and Width bounds are NOT being used")
         }
     }
     

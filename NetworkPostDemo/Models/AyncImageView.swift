@@ -18,7 +18,7 @@ class AyncImageView: UIImageView {
     
     //MARK: - Public Methods
     
-    func loadAsyncFrom(url: String, placeholder: UIImage?) {
+    func loadAsyncFrom(url: String, placeholder: UIImage?, completion: (@escaping(Bool) -> Void)){
         let imageURL = url as NSString
         if let cashedImage = asyncImagesCashArray.object(forKey: imageURL) {
             image = cashedImage
@@ -35,6 +35,7 @@ class AyncImageView: UIImageView {
                             if let imageToPresent = UIImage(data: imageData) {
                                 asyncImagesCashArray.setObject(imageToPresent, forKey: imageURL)
                                 self?.image = imageToPresent
+                                completion(true)
                             } else {
                                 self?.image = placeholder
                             }
