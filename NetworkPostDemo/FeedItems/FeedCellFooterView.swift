@@ -8,6 +8,24 @@
 
 import UIKit
 
+class FeedButton: UIButton{
+    
+    init(insets: UIEdgeInsets, image: UIImage){
+        super.init(frame: .zero)
+        contentEdgeInsets = insets
+        setTitleColor(UIColor.red, for: .normal)
+        setImage(image.imageWithInsets(insetDimen: 40) , for: UIControlState.normal) //insets allow room within the border itself
+        imageView?.layer.borderColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0).cgColor
+        imageView?.layer.borderWidth = 2.0
+        imageView?.layer.cornerRadius = 5
+        imageView?.layer.masksToBounds = true
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 //footer to be used for all feed cells
 class FeedCellFooterView: UIView{
     
@@ -45,49 +63,31 @@ class FeedCellFooterView: UIView{
         textView.isScrollEnabled = false
         return textView
     }()
-    //plausibly better to create a subclass with the consistent constant attributes
-    var likeButton: UIButton = {
-        var button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
-        //button.setTitle("Like", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "likeButton").imageWithInsets(insetDimen: 40) , for: UIControlState.normal) //insets allow room within the border itself
-        button.imageView?.layer.borderColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0).cgColor
-        button.imageView?.layer.borderWidth = 2.0
-        button.imageView?.layer.cornerRadius = 5
-        button.imageView?.layer.masksToBounds = true
+    
+    //created a subclass with the consistent constant attributes
+    var likeButton: FeedButton = {
+        var insets = UIEdgeInsetsMake(12, 12, 4, 0)
+        var button = FeedButton(insets: insets, image: #imageLiteral(resourceName: "likeButton"))
         return button
     }()
-    var commentButton: UIButton = {
-        var button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
-        //button.setTitle("Comment", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "commentButton").imageWithInsets(insetDimen: 40), for: UIControlState.normal) //insets allow room within the border itself
-        button.imageView?.layer.borderColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0).cgColor
-        button.imageView?.layer.borderWidth = 2.0
-        button.imageView?.layer.cornerRadius = 5
-        button.imageView?.layer.masksToBounds = true
+    var commentButton: FeedButton = {
+        var insets = UIEdgeInsetsMake(12, 12, 4, 0)
+        var button = FeedButton(insets: insets, image: #imageLiteral(resourceName: "commentButton"))
         return button
     }()
-    var shareButton: UIButton = {
-        var button = UIButton()
-        button.contentEdgeInsets = UIEdgeInsetsMake(12, 12, 4, 0)
-        //button.setTitle("Share", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.setImage(#imageLiteral(resourceName: "shareButton").imageWithInsets(insetDimen: 40), for: UIControlState.normal) //insets allow room within the border itself
-        button.imageView?.layer.borderColor = UIColor(red: 255/255, green: 85/255, blue: 73/255, alpha: 1.0).cgColor
-        button.imageView?.layer.borderWidth = 2.0
-        button.imageView?.layer.cornerRadius = 5
-        button.imageView?.layer.masksToBounds = true
+    var shareButton: FeedButton = {
+        var insets = UIEdgeInsetsMake(12, 12, 4, 0)
+        var button = FeedButton(insets: insets, image: #imageLiteral(resourceName: "shareButton"))
         return button
     }()
+    
     var optionsButton: UIButton = {
         var button = UIButton()
         button.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 12)
         button.setTitle("...", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
         //button.setImage(#imageLiteral(resourceName: "optionsButton"), for: UIControlState.normal)
+        //the options image does not match the dimensions of the other buttons - causing a deformity.
         return button
     }()
     

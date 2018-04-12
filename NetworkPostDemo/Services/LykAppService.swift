@@ -112,7 +112,7 @@ class LykAppService{
                     do{
                         let post = try self.decode(as: PostDetails.self, data: details as! [String : Any])
                         items.append(post)
-                        print(details)
+                       // print(details)
                     } catch{
                         print(error)
                 }
@@ -147,7 +147,6 @@ class LykAppService{
                         do{
                             let post = try self.decode(as: PostDetails.self, data: details as! [String : Any])
                             items.append(post)
-                            print(details)
                         } catch{
                             print(error)
                         }

@@ -1,15 +1,13 @@
 //
-//  PostCellBodyView.swift
+//  FeedCellBodyView.swift
 //  NetworkPostDemo
 //
-//  Created by Loaner on 4/8/18.
+//  Created by Loaner on 4/11/18.
 //  Copyright © 2018 baksha97. All rights reserved.
 //
 import UIKit
 
-class PostCellBodyView: UIView{
-    
-    
+class FeedCellBodyView: UIView{
     var urlString: String? {
         didSet {
             if let url = urlString {
@@ -39,20 +37,6 @@ class PostCellBodyView: UIView{
         return imageView
     }()
     
-    //for when a post does not have an image --- it may be more appropriate to create an entirely new cell
-    func removeImageView(){
-        self.mainImageView.isHidden = true
-    }
-    
-    func removeTitle(){
-       // self.titleView.removeFromSuperview()
-        self.titleView.removeFromSuperview()
-        mainImageView.anchor(top: self.topAnchor,
-                             left: self.leftAnchor,
-                             bottom: self.bottomAnchor,
-                             right: self.rightAnchor)
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -62,10 +46,24 @@ class PostCellBodyView: UIView{
                          bottom: mainImageView.topAnchor, right: self.rightAnchor)
         mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
                              bottom: self.bottomAnchor, right: self.rightAnchor)
-        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //for when a post does not have an image --- it may be more appropriate to create an entirely new cell
+    func removeImageView(){
+        self.mainImageView.isHidden = true
+    }
+    
+    func removeTitle(){
+        // self.titleView.removeFromSuperview()
+        self.titleView.removeFromSuperview()
+        mainImageView.anchor(top: self.topAnchor,
+                             left: self.leftAnchor,
+                             bottom: self.bottomAnchor,
+                             right: self.rightAnchor)
     }
     
 }
