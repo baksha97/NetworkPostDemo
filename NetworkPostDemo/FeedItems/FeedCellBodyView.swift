@@ -42,10 +42,10 @@ class FeedCellBodyView: UIView{
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleView)
         self.addSubview(mainImageView)
-        titleView.anchor(top: self.topAnchor, left: self.leftAnchor,
-                         bottom: mainImageView.topAnchor, right: self.rightAnchor)
-        mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
-                             bottom: self.bottomAnchor, right: self.rightAnchor)
+//        titleView.anchor(top: self.topAnchor, left: self.leftAnchor,
+//                         bottom: mainImageView.topAnchor, right: self.rightAnchor)
+//        mainImageView.anchor(top: titleView.bottomAnchor, left: self.leftAnchor,
+//                             bottom: self.bottomAnchor, right: self.rightAnchor)
     }
     
     required init?(coder aDecoder: NSCoder) {

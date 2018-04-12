@@ -81,9 +81,6 @@ class NewsFeedCellBodyView: FeedCellBodyView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //setupViews()
-        self.addSubview(titleView)
-        self.addSubview(mainImageView)
         self.addSubview(newsDescriptionView)
         self.addSubview(poweredByView)
         titleView.anchor(top: self.topAnchor, left: self.leftAnchor,

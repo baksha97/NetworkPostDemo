@@ -74,8 +74,6 @@ class PostObjectManager{
             }else{
                 postCell.view.body.removeImageView()
             }
-    
-         ///   print(postCell.view.debugDescription)
             
             postCell.backgroundColor = UIColor.white
             postCell.view.footer.likeTextView.text = "\(postDetail.likeCount) Likes"

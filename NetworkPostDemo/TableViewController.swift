@@ -59,6 +59,7 @@ class TableViewController: UITableViewController {
                 self.data = items.reversed()
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.tableView.setNeedsLayout()
                     self.tableView.layoutIfNeeded()
                 }
             }
